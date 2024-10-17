@@ -31,3 +31,5 @@ Installation and Setup
     Run the application:
         php artisan serve  
         npm run dev  
+
+TESTING BLOCKED MAIN
