@@ -1,10 +1,10 @@
-@extends('layouts.guest')
+@extends('layouts.personal')
 @section('content')
     <div class="container mx-auto py-8">
         <h1 class="text-3xl font-bold text-center text-gray-800 mb-6">Crear Nueva Categoría</h1>
 
         <div class="bg-white shadow-md rounded-lg overflow-hidden">
-            <form action="{{ route('Events.store') }}" method="POST" class="px-8 py-8">
+            <form action="{{ route('events.store') }}" method="POST" class="px-8 py-8">
                 @csrf
 
                 <div class="mb-4">
@@ -28,7 +28,7 @@
                 </div>
 
                 <div class="flex justify-end">
-                    <a href="{{ route('Events.index') }}"
+                    <a href="{{ route('events.index') }}"
                         class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600 mr-2">Cancelar</a>
                     <button type="submit"
                         class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Crear Categoría</button>

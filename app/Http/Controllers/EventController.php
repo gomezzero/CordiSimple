@@ -12,7 +12,7 @@ class EventController extends Controller
      */
     public function index()
     {
-        $Events = Event::all();
+        $events = Event::all();
         return view('events.index', compact('events'));
     }
 
@@ -45,9 +45,9 @@ class EventController extends Controller
     public function show(string $id)
     {
         // obtiene un Event por el ID
-        $Event = Event::findOrFail($id);
+        $event = Event::findOrFail($id);
 
-        return view('events.show', compact('Event'));
+        return view('events.show', compact('event'));
     }
 
     /**
@@ -55,8 +55,8 @@ class EventController extends Controller
      */
     public function edit(string $id)
     {
-        $Event = Event::findOrFail($id);
-        return view('events.edit', compact('Event'));
+        $event = Event::findOrFail($id);
+        return view('events.edit', compact('event'));
     }
 
     /**
@@ -66,8 +66,8 @@ class EventController extends Controller
     {
         $validatedData = $request->validate();
 
-        $Event = Event::findOrFail($id);
-        $Event->update($validatedData);
+        $event = Event::findOrFail($id);
+        $event->update($validatedData);
 
         return redirect()->route('events.index')->with('success', 'Evento actualizado con exito');
     }
@@ -77,8 +77,8 @@ class EventController extends Controller
      */
     public function destroy(string $id)
     {
-        $Event = Event::findOrFail($id);
-        $Event->delete();
+        $event = Event::findOrFail($id);
+        $event->delete();
 
         return redirect()->route('events.index')->with('succes', 'Evento eliminado con exito');
     }
