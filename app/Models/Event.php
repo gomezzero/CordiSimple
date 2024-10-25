@@ -17,7 +17,7 @@ class Event extends Model
         'time',
         'location',
         'max_capacity',
-        'availableSpots',
+        'availableSports',
         'status'
     ];
 }

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('description');
             $table->dateTime('date');
-            $table->dateTime('time');
+            $table->time('time');
             $table->string('location');
             $table->integer('max_capacity');
             $table->integer('availableSports');
