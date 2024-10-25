@@ -13,7 +13,7 @@ class EventController extends Controller
     public function index()
     {
         $Events = Event::all();
-        return view('Events.index', compact('Events'));
+        return view('events.index', compact('events'));
     }
 
     /**
@@ -21,7 +21,7 @@ class EventController extends Controller
      */
     public function create()
     {
-        return view('Events.create');
+        return view('events.create');
     }
 
     /**
@@ -36,7 +36,7 @@ class EventController extends Controller
         Event::create($validatedData);
 
         // Redirecciona con un mensaje de éxito
-        return redirect()->route('Events.index')->with('success', 'Evento creado con éxito.');
+        return redirect()->route('events.index')->with('success', 'Evento creado con éxito.');
     }
 
     /**
@@ -47,7 +47,7 @@ class EventController extends Controller
         // obtiene un Event por el ID
         $Event = Event::findOrFail($id);
 
-        return view('Events.show', compact('Event'));
+        return view('events.show', compact('Event'));
     }
 
     /**
@@ -56,7 +56,7 @@ class EventController extends Controller
     public function edit(string $id)
     {
         $Event = Event::findOrFail($id);
-        return view('Events.edit', compact('Event'));
+        return view('events.edit', compact('Event'));
     }
 
     /**
@@ -69,7 +69,7 @@ class EventController extends Controller
         $Event = Event::findOrFail($id);
         $Event->update($validatedData);
 
-        return redirect()->route('Events.index')->with('success', 'Evento actualizado con exito');
+        return redirect()->route('events.index')->with('success', 'Evento actualizado con exito');
     }
 
     /**
@@ -80,6 +80,6 @@ class EventController extends Controller
         $Event = Event::findOrFail($id);
         $Event->delete();
 
-        return redirect()->route('Events.index')->with('succes', 'Evento eliminado con exito');
+        return redirect()->route('events.index')->with('succes', 'Evento eliminado con exito');
     }
 }
