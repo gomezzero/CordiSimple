@@ -11,3 +11,6 @@ Route::resource('notifications', NotificationController::class);
 Route::get('/', function () {
     return view('welcome');
 });
+
+// Incluir las rutas de autenticación
+require __DIR__.'/auth.php';
