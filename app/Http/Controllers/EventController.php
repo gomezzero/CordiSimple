@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
-use Illuminate\Http\Request;
+use Illuminate\Http\Request\EventRequest;
 
 class EventController extends Controller
 {
@@ -27,25 +27,14 @@ class EventController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(EventRequest $request)
     {
-        // Valida los datos ingresados 
-        $validatedData = $request->validate(
-            [
-                'name' => 'required|string',
-                'description' => 'required|string',
-                'date' => 'required|dateTime',
-                'time' => 'required|dateTime',
-                'location' => 'required|string',
-                'max_capacity' => 'required|numeric',
-                'availableSports' => 'required|numeric',
-                'status' => 'required|string'
-            ]
-        );
-    
+        // Valida los datos ingresados
+        $validatedData = $request->validate();
+
         // Crea y guarda un nuevo Event
         Event::create($validatedData);
-    
+
         // Redirecciona con un mensaje de éxito
         return redirect()->route('Events.index')->with('success', 'Evento creado con éxito.');
     }
@@ -73,20 +62,9 @@ class EventController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(EventRequest $request, string $id)
     {
-        $validatedData = $request->validate(
-            [
-                'name' => 'required|string',
-                'description' => 'required|string',
-                'date' => 'required|dateTime',
-                'time' => 'required|dateTime',
-                'location' => 'required|string',
-                'max_capacity' => 'required|numeric',
-                'availableSports' => 'required|numeric',
-                'status' => 'required|string'
-            ]
-        );
+        $validatedData = $request->validate();
 
         $Event = Event::findOrFail($id);
         $Event->update($validatedData);
