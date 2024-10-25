@@ -15,7 +15,6 @@ class Notification extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        
         'user_id',
         'event_id',
         'type',
@@ -23,7 +22,7 @@ class Notification extends Model
     ];
 
     /**
-     * Define the relationship to the User model.
+     * Get the user associated with the notification.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -33,7 +32,7 @@ class Notification extends Model
     }
 
     /**
-     * Define the relationship to the Event model.
+     * Get the event associated with the notification.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
