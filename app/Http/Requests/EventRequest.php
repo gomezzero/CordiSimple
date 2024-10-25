@@ -30,7 +30,7 @@ class EventRequest extends FormRequest
             'time' => 'required|date_format:H:i',
             'location' => 'required|string|max:255',
             'max_capacity' => 'required|integer|min:1',
-            'availableSpots' => 'required|integer|min:1',
+            'availableSports' => 'required|integer|min:1',
             'status' =>'required|in:Canceled, Active, Postponed',
         ];
     }

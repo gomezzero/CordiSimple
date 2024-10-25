@@ -11,6 +11,8 @@ Route::get('/', function () {
 });
 // Incluir las rutas de autenticación
 require __DIR__.'/auth.php';
+
+
 Route::get('Events', [EventController::class, 'index'])->name('Events.index');
 Route::get('Events/create', [EventController::class, 'create'])->name('Events.create');
 Route::post('Events', [EventController::class, 'store'])->name('Events.store');
