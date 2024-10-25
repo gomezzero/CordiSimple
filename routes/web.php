@@ -12,13 +12,13 @@ Route::get('/', function () {
 })->name('welcome');
 
 
-// Incluir las rutas de autenticación
-Route::get('Events', [EventController::class, 'index'])->name('Events.index');
-Route::get('Events/create', [EventController::class, 'create'])->name('Events.create');
-Route::post('Events', [EventController::class, 'store'])->name('Events.store');
-Route::get('Events/{id}', [EventController::class, 'show'])->name('Events.show');
-Route::get('Events/{id}/edit', [EventController::class, 'edit'])->name('Events.edit');
-Route::put('Events/{id}', [EventController::class, 'update'])->name('Events.update');
-Route::delete('Events/{id}', [EventController::class, 'destroy'])->name('Events.destroy');
-
 require __DIR__.'/auth.php';
+
+Route::get('events', [EventController::class, 'index'])->name('events.index'); // Cambiado a 'events.index'
+Route::get('events/create', [EventController::class, 'create'])->name('events.create'); // Cambiado a 'events.create'
+Route::post('events', [EventController::class, 'store'])->name('events.store'); // Cambiado a 'events.store'
+Route::get('events/{id}', [EventController::class, 'show'])->name('events.show'); // Cambiado a 'events.show'
+Route::get('events/{id}/edit', [EventController::class, 'edit'])->name('events.edit'); // Cambiado a 'events.edit'
+Route::put('events/{id}', [EventController::class, 'update'])->name('events.update'); // Cambiado a 'events.update'
+Route::delete('events/{id}', [EventController::class, 'destroy'])->name('events.destroy'); // Cambiado a 'events.destroy'
+
