@@ -30,7 +30,7 @@ class EventController extends Controller
     public function store(EventRequest $request)
     {
         // Valida los datos ingresados
-        $validatedData = $request->validate();
+        $validatedData = $request->all();
 
         // Crea y guarda un nuevo Event
         Event::create($validatedData);
@@ -64,7 +64,7 @@ class EventController extends Controller
      */
     public function update(EventRequest $request, string $id)
     {
-        $validatedData = $request->validate();
+        $validatedData = $request->all();
 
         $event = Event::findOrFail($id);
         $event->update($validatedData);

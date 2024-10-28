@@ -31,9 +31,10 @@ class EventRequest extends FormRequest
             'location' => 'required|string|max:255',
             'max_capacity' => 'required|integer|min:1',
             'availableSports' => 'required|integer|min:1',
-            'status' =>'required|in:Canceled, Active, Postponed',
+            'status' => 'required|string|max:20',
         ];
     }
+
 
     /**
      * Get custom messages for validation errors.
