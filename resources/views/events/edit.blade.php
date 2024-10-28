@@ -10,7 +10,7 @@
                 @method('PUT')
 
                 <div class="mb-4">
-                    <label for="name" class="block text-gray-700 font-bold mb-2">nombre del evento:</label>
+                    <label for="name" class="block text-gray-700 font-bold mb-2">Nombre del evento:</label>
                     <input type="text" name="name" id="name"
                         class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500"
                         value="{{ old('name', $event->name) }}" required>
@@ -20,17 +20,7 @@
                 </div>
 
                 <div class="mb-6">
-                    <label for="name" class="block text-gray-700 font-bold mb-2">nombre:</label>
-                    <input type="text" name="name" id="name"
-                        class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500"
-                        rows="4">{{ old('name', $event->name) }}</input>
-                    @error('name')
-                        <span class="text-red-500 text-sm">{{ $message }}</span>
-                    @enderror
-                </div>
-
-                <div class="mb-6">
-                    <label for="description" class="block text-gray-700 font-bold mb-2">Descripcion:</label>
+                    <label for="description" class="block text-gray-700 font-bold mb-2">Descripción:</label>
                     <textarea name="description" id="description"
                         class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500"
                         rows="4">{{ old('description', $event->description) }}</textarea>
@@ -40,10 +30,10 @@
                 </div>
 
                 <div class="mb-6">
-                    <label for="date" class="block text-gray-700 font-bold mb-2">Dia:</label>
+                    <label for="date" class="block text-gray-700 font-bold mb-2">Día:</label>
                     <input type="date" name="date" id="date"
                         class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500"
-                        rows="4">{{ old('date', $event->date) }}</input>
+                        value="{{ old('date', $event->date) }}">
                     @error('date')
                         <span class="text-red-500 text-sm">{{ $message }}</span>
                     @enderror
@@ -53,7 +43,7 @@
                     <label for="time" class="block text-gray-700 font-bold mb-2">Hora:</label>
                     <input type="time" name="time" id="time"
                         class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500"
-                        rows="4">{{ old('time', $event->time) }}</input>
+                        value="{{ old('time', $event->time) }}">
                     @error('time')
                         <span class="text-red-500 text-sm">{{ $message }}</span>
                     @enderror
@@ -63,17 +53,17 @@
                     <label for="location" class="block text-gray-700 font-bold mb-2">Lugar:</label>
                     <input type="text" name="location" id="location"
                         class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500"
-                        rows="4">{{ old('location', $event->location) }}</input>
+                        value="{{ old('location', $event->location) }}">
                     @error('location')
                         <span class="text-red-500 text-sm">{{ $message }}</span>
                     @enderror
                 </div>
 
                 <div class="mb-6">
-                    <label for="max_capacity" class="block text-gray-700 font-bold mb-2">Capacidad maxima:</label>
+                    <label for="max_capacity" class="block text-gray-700 font-bold mb-2">Capacidad máxima:</label>
                     <input type="number" name="max_capacity" id="max_capacity"
                         class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500"
-                        rows="4">{{ old('max_capacity', $event->max_capacity) }}</input>
+                        value="{{ old('max_capacity', $event->max_capacity) }}">
                     @error('max_capacity')
                         <span class="text-red-500 text-sm">{{ $message }}</span>
                     @enderror
@@ -81,9 +71,9 @@
 
                 <div class="mb-6">
                     <label for="availableSports" class="block text-gray-700 font-bold mb-2">Lugares disponibles:</label>
-                    <input type="number"  name="availableSports" id="availableSports"
+                    <input type="number" name="availableSports" id="availableSports"
                         class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500"
-                        rows="4">{{ old('availableSports', $event->availableSports) }}</input>
+                        value="{{ old('availableSports', $event->availableSports) }}">
                     @error('availableSports')
                         <span class="text-red-500 text-sm">{{ $message }}</span>
                     @enderror
@@ -92,11 +82,10 @@
                 <div class="mb-6">
                     <label for="status" class="block text-gray-700 font-bold mb-2">Status:</label>
                     <select name="status" id="status"
-                        class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500"
-                        rows="4">{{ old('status', $event->status) }} 
-                        <option value="Activo">Activo</option>
-                        <option value="Pospuesto">Pospuesto</option>
-                        <option value="Cancelado">Cancelado</option>
+                        class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500">
+                        <option value="Activo" {{ old('status', $event->status) == 'Activo' ? 'selected' : '' }}>Activo</option>
+                        <option value="Pospuesto" {{ old('status', $event->status) == 'Pospuesto' ? 'selected' : '' }}>Pospuesto</option>
+                        <option value="Cancelado" {{ old('status', $event->status) == 'Cancelado' ? 'selected' : '' }}>Cancelado</option>
                     </select>
                     @error('status')
                         <span class="text-red-500 text-sm">{{ $message }}</span>
@@ -113,3 +102,4 @@
         </div>
     </div>
 @endsection
+
