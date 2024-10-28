@@ -21,9 +21,9 @@
 
                 <div class="mb-6">
                     <label for="name" class="block text-gray-700 font-bold mb-2">nombre:</label>
-                    <textarea name="name" id="name"
+                    <input type="text" name="name" id="name"
                         class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500"
-                        rows="4">{{ old('name', $event->name) }}</textarea>
+                        rows="4">{{ old('name', $event->name) }}</input>
                     @error('name')
                         <span class="text-red-500 text-sm">{{ $message }}</span>
                     @enderror
@@ -41,9 +41,9 @@
 
                 <div class="mb-6">
                     <label for="date" class="block text-gray-700 font-bold mb-2">Dia:</label>
-                    <textarea name="date" id="date"
+                    <input type="date" name="date" id="date"
                         class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500"
-                        rows="4">{{ old('date', $event->date) }}</textarea>
+                        rows="4">{{ old('date', $event->date) }}</input>
                     @error('date')
                         <span class="text-red-500 text-sm">{{ $message }}</span>
                     @enderror
@@ -51,9 +51,9 @@
 
                 <div class="mb-6">
                     <label for="time" class="block text-gray-700 font-bold mb-2">Hora:</label>
-                    <textarea name="time" id="time"
+                    <input type="time" name="time" id="time"
                         class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500"
-                        rows="4">{{ old('time', $event->time) }}</textarea>
+                        rows="4">{{ old('time', $event->time) }}</input>
                     @error('time')
                         <span class="text-red-500 text-sm">{{ $message }}</span>
                     @enderror
@@ -61,9 +61,9 @@
 
                 <div class="mb-6">
                     <label for="location" class="block text-gray-700 font-bold mb-2">Lugar:</label>
-                    <textarea name="location" id="location"
+                    <input type="text" name="location" id="location"
                         class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500"
-                        rows="4">{{ old('location', $event->location) }}</textarea>
+                        rows="4">{{ old('location', $event->location) }}</input>
                     @error('location')
                         <span class="text-red-500 text-sm">{{ $message }}</span>
                     @enderror
@@ -71,9 +71,9 @@
 
                 <div class="mb-6">
                     <label for="max_capacity" class="block text-gray-700 font-bold mb-2">Capacidad maxima:</label>
-                    <textarea name="max_capacity" id="max_capacity"
+                    <input type="number" name="max_capacity" id="max_capacity"
                         class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500"
-                        rows="4">{{ old('max_capacity', $event->max_capacity) }}</textarea>
+                        rows="4">{{ old('max_capacity', $event->max_capacity) }}</input>
                     @error('max_capacity')
                         <span class="text-red-500 text-sm">{{ $message }}</span>
                     @enderror
@@ -81,9 +81,9 @@
 
                 <div class="mb-6">
                     <label for="availableSports" class="block text-gray-700 font-bold mb-2">Lugares disponibles:</label>
-                    <textarea name="availableSports" id="availableSports"
+                    <input type="number"  name="availableSports" id="availableSports"
                         class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500"
-                        rows="4">{{ old('availableSports', $event->availableSports) }}</textarea>
+                        rows="4">{{ old('availableSports', $event->availableSports) }}</input>
                     @error('availableSports')
                         <span class="text-red-500 text-sm">{{ $message }}</span>
                     @enderror
@@ -91,9 +91,13 @@
 
                 <div class="mb-6">
                     <label for="status" class="block text-gray-700 font-bold mb-2">Status:</label>
-                    <textarea name="status" id="status"
+                    <select name="status" id="status"
                         class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500"
-                        rows="4">{{ old('status', $event->status) }}</textarea>
+                        rows="4">{{ old('status', $event->status) }} 
+                        <option value="Activo">Activo</option>
+                        <option value="Pospuesto">Pospuesto</option>
+                        <option value="Cancelado">Cancelado</option>
+                    </select>
                     @error('status')
                         <span class="text-red-500 text-sm">{{ $message }}</span>
                     @enderror
