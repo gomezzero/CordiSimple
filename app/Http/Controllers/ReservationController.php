@@ -51,7 +51,6 @@ class ReservationController extends Controller
 
         return redirect()->route('events.usershow', $eventId)->with('success', 'Reserva creada exitosamente.');
     }
-
     /**
      * Store a newly created resource in storage.
      */
