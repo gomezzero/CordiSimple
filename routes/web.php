@@ -4,9 +4,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\ReservationController;
 
 Route::resource('users', UserController::class);
 Route::resource('notifications', NotificationController::class);
+Route::resource('reservations', ReservationController::class);
 
 
 Route::get('/dashboard', function () {
@@ -18,7 +20,7 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
-
+// Rutas de eventos
 Route::get('events', [EventController::class, 'index'])->name('events.index'); // Cambiado a 'events.index'
 Route::get('events/create', [EventController::class, 'create'])->name('events.create'); // Cambiado a 'events.create'
 Route::post('events', [EventController::class, 'store'])->name('events.store'); // Cambiado a 'events.store'
