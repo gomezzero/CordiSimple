@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Reservation;
 use App\Http\Requests\ReservationRequest;
-
+use Illuminate\Support\Facades\Auth;
 
 class ReservationController extends Controller
 {
@@ -31,6 +31,24 @@ class ReservationController extends Controller
             'message' => 'Reserva creada con éxito',
             'reservation' => $reservation,
         ], 201);
+    }
+
+    public function storeForEvent($eventId)
+    {
+        $user = Auth::user();
+
+        if (!$user) {
+            return redirect()->route('login')->with('error', 'Debes iniciar sesión para agendar un evento.');
+        }
+
+        // Crear la reserva
+        $reservation = new Reservation();
+        $reservation->status = 'Agendada';
+        $reservation->user_id = $user->id;
+        $reservation->event_id = $eventId;
+        $reservation->save();
+
+        return redirect()->route('events.show', $eventId)->with('success', 'Reserva creada exitosamente.');
     }
 
     /**
