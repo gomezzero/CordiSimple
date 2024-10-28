@@ -4,9 +4,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\ReservationController;
 
 Route::resource('users', UserController::class);
 Route::resource('notifications', NotificationController::class);
+Route::resource('reservations', ReservationController::class);
 
 
 Route::get('/dashboard', function () {
@@ -18,7 +20,7 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
-
+// Rutas de eventos
 Route::get('events', [EventController::class, 'index'])->name('events.index'); // Cambiado a 'events.index'
 Route::get('events/create', [EventController::class, 'create'])->name('events.create'); // Cambiado a 'events.create'
 Route::post('events', [EventController::class, 'store'])->name('events.store'); // Cambiado a 'events.store'
@@ -26,6 +28,9 @@ Route::get('events/{id}', [EventController::class, 'show'])->name('events.show')
 Route::get('events/{id}/edit', [EventController::class, 'edit'])->name('events.edit'); // Cambiado a 'events.edit'
 Route::put('events/{id}', [EventController::class, 'update'])->name('events.update'); // Cambiado a 'events.update'
 Route::delete('events/{id}', [EventController::class, 'destroy'])->name('events.destroy'); // Cambiado a 'events.destroy'
+Route::get('/user/edit', [UserController::class, 'edit'])->name('user.edit');
+Route::put('/user/update', [UserController::class, 'update'])->name('user.update');
+
 
 
 // Incluir las rutas de autenticación
