@@ -26,6 +26,9 @@ Route::get('events/{id}', [EventController::class, 'show'])->name('events.show')
 Route::get('events/{id}/edit', [EventController::class, 'edit'])->name('events.edit'); // Cambiado a 'events.edit'
 Route::put('events/{id}', [EventController::class, 'update'])->name('events.update'); // Cambiado a 'events.update'
 Route::delete('events/{id}', [EventController::class, 'destroy'])->name('events.destroy'); // Cambiado a 'events.destroy'
+Route::get('/user/edit', [UserController::class, 'edit'])->name('user.edit');
+Route::put('/user/update', [UserController::class, 'update'])->name('user.update');
+
 
 
 // Incluir las rutas de autenticación
