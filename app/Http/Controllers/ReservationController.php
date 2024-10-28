@@ -13,8 +13,9 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        $reservations = Reservation::with(['user', 'event'])->get();
-        return response()->json($reservations);
+        $reservations = auth()->user()->reservations()->with('event')->get();
+
+        return view('reservations.userindex', compact('reservations'));
     }
 
     /**
@@ -37,23 +38,18 @@ class ReservationController extends Controller
     {
         $user = Auth::user();
 
-        // Verificar si ya existe una reserva
-        $existingReservation = Reservation::where('user_id', $user->id)
-            ->where('event_id', $eventId)
-            ->first();
-    
-        if ($existingReservation) {
-            return redirect()->route('events.show', $eventId)->with('error', 'Ya tienes una reserva para este evento.');
+        if (!$user) {
+            return redirect()->route('login')->with('error', 'Debes iniciar sesión para agendar un evento.');
         }
-    
-        // Crear la reserva si no existe una para este evento
+
+        // Crear la reserva
         $reservation = new Reservation();
         $reservation->status = 'Agendada';
         $reservation->user_id = $user->id;
         $reservation->event_id = $eventId;
         $reservation->save();
-    
-        return redirect()->route('events.show', $eventId)->with('success', 'Reserva creada exitosamente.');
+
+        return redirect()->route('events.usershow', $eventId)->with('success', 'Reserva creada exitosamente.');
     }
     /**
      * Store a newly created resource in storage.
