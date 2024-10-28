@@ -26,11 +26,11 @@ class EventRequest extends FormRequest
         return [
             'name' => 'required|string|max:255',
             'description' => 'nullable|string|max:500',
-            'date' => 'required|date',
+            'date' => 'required|date|after_or_equal:today',
             'time' => 'required|date_format:H:i',
             'location' => 'required|string|max:255',
             'max_capacity' => 'required|integer|min:1',
-            'availableSports' => 'required|integer|min:1',
+            'availableSpots' => 'required|integer|min:1',
             'status' => 'required|string|max:20',
         ];
     }
@@ -46,10 +46,13 @@ class EventRequest extends FormRequest
         return [
             'name.required' => 'El nombre del evento es obligatorio.',
             'date.required' => 'La fecha es obligatoria.',
+            'date.after_or_equal' => 'La fecha del evento no puede ser anterior a hoy.',
             'time.required' => 'La hora es obligatoria.',
             'location.required' => 'La ubicación es obligatoria.',
             'max_capacity.required' => 'La capacidad máxima es obligatoria.',
             'status.required' => 'El estado es obligatorio.',
         ];
     }
+
+    
 }
