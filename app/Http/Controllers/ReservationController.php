@@ -13,8 +13,9 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        $reservations = Reservation::with(['user', 'event'])->get();
-        return response()->json($reservations);
+        $reservations = auth()->user()->reservations()->with('event')->get();
+
+        return view('reservations.userindex', compact('reservations'));
     }
 
     /**
@@ -48,7 +49,7 @@ class ReservationController extends Controller
         $reservation->event_id = $eventId;
         $reservation->save();
 
-        return redirect()->route('events.show', $eventId)->with('success', 'Reserva creada exitosamente.');
+        return redirect()->route('events.usershow', $eventId)->with('success', 'Reserva creada exitosamente.');
     }
 
     /**

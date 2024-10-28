@@ -16,6 +16,12 @@ class EventController extends Controller
         return view('events.index', compact('events'));
     }
 
+    public function indexReservation()
+    {
+        $events = Event::all();
+        return view('reservations.userindex', compact('events'));
+    }
+
     public function indexDashboard()
     {
         $events = Event::all();
