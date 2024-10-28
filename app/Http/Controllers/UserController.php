@@ -3,62 +3,52 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Show the form for editing the authenticated user's profile.
      */
-    public function index()
+    public function edit()
     {
-        //
+        // Verifica si el usuario está autenticado
+        if (!Auth::check()) {
+            return redirect()->route('login')->with('error', 'You must be logged in to edit your profile.');
+        }
+
+        // Obtiene el usuario autenticado
+        $user = Auth::user();
+
+        // Retorna la vista de edición con el usuario actual
+        return view('layouts.edit', compact('user')); // Cambia 'user.edit' a 'layouts.edit'
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Update the authenticated user's profile.
      */
-    public function create()
+    public function update(Request $request)
     {
-        //
-    }
+        // Validación de los datos del formulario
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255|unique:users,email,' . Auth::id(),
+            'password' => 'nullable|string|min:8|confirmed',
+        ]);
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+        // Obtiene el usuario autenticado
+        $user = Auth::user();
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
+        // Solo actualiza la contraseña si se proporciona
+        if ($request->filled('password')) {
+            $user->password = bcrypt($request->input('password'));
+        }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
+        // Guarda los cambios
+        $user->save();
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return redirect()->route('dashboard')->with('success', 'Profile updated successfully!');
     }
 }
