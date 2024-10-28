@@ -31,7 +31,8 @@ Route::delete('events/{id}', [EventController::class, 'destroy'])->name('events.
 Route::get('/user/edit', [UserController::class, 'edit'])->name('user.edit');
 Route::put('/user/update', [UserController::class, 'update'])->name('user.update');
 
-
+// reservetion
+Route::get('/events/{eventId}/schedule', [ReservationController::class, 'storeForEvent'])->name('reservations.schedule');
 
 // Incluir las rutas de autenticación
 require __DIR__.'/auth.php';

@@ -35,13 +35,13 @@
             <div class="w-full md:block md:w-auto hidden" id="mobile-menu">
                 <ul class="flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium">
                     <li>
-                        <a href="{{ route('events.index')}}"
+                        <a href="{{ route('events.index') }}"
                             class="block py-2 pr-4 pl-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
                             aria-current="page">
                             event
                         </a>
                     </li>
-    
+
                 </ul>
             </div>
         </div>
@@ -54,6 +54,13 @@
         </div>
     </main>
 
+    @if (session('success'))
+        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4" role="alert">
+            <strong class="font-bold">¡Éxito!</strong>
+            <span class="block sm:inline">{{ session('success') }}</span>
+        </div>
+    @endif
+
     <!-- component -->
     <footer class="bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 py-6 px-4">
         <div class="container mx-auto flex flex-wrap justify-between">
@@ -64,6 +71,7 @@
             </div>
         </div>
     </footer>
+
 </html>
 
 </body>

@@ -43,11 +43,12 @@
 
             <!-- Botones de acción -->
             <div class="flex space-x-4 mt-6 justify-center">
-                <a href="{{ route('events.edit', $event->id) }}" class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded shadow">
+                <a href="{{ route('reservations.schedule', $event->id) }}"
+                   class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded shadow">
                     Agendar evento
                 </a>
             </div>
-
+            
             <!-- Regresar a la lista de eventos -->
             <div class="mt-8 text-center">
                 <a href="{{ route('dashboard') }}" class="text-blue-600 hover:text-blue-800 font-semibold">
