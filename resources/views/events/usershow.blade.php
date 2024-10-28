@@ -44,21 +44,14 @@
             <!-- Botones de acción -->
             <div class="flex space-x-4 mt-6 justify-center">
                 <a href="{{ route('events.edit', $event->id) }}" class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded shadow">
-                    Editar Evento
+                    Agendar evento
                 </a>
-                <form action="{{ route('events.destroy', $event->id) }}" method="POST" onsubmit="return confirm('¿Estás seguro de eliminar este evento?')">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded shadow">
-                        Eliminar Evento
-                    </button>
-                </form>
             </div>
 
             <!-- Regresar a la lista de eventos -->
             <div class="mt-8 text-center">
-                <a href="{{ route('events.index') }}" class="text-blue-600 hover:text-blue-800 font-semibold">
-                    ← Volver a la Lista de Eventos
+                <a href="{{ route('dashboard') }}" class="text-blue-600 hover:text-blue-800 font-semibold">
+                    Volver a la Lista de Eventos
                 </a>
             </div>
         </div>

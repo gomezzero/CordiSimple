@@ -27,7 +27,7 @@
                             <th class="px-4 py-2">Hora</th>
                             <th class="px-4 py-2">Ubicación</th>
                             <th class="px-4 py-2">Capacidad Máxima</th>
-                            <th class="px-4 py-2">Deportes Disponibles</th>
+                            <th class="px-4 py-2">Lugares Disponibles</th>
                             <th class="px-4 py-2">Estado</th>
                             <th class="px-4 py-2">Acciones</th>
                         </tr>

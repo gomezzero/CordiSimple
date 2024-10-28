@@ -16,6 +16,12 @@ class EventController extends Controller
         return view('events.index', compact('events'));
     }
 
+    public function indexDashboard()
+    {
+        $events = Event::all();
+        return view('dashboard', compact('events'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -42,12 +48,16 @@ class EventController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        // obtiene un Event por el ID
         $event = Event::findOrFail($id);
-
         return view('events.show', compact('event'));
+    }
+
+    public function usershow($id)
+    {
+        $event = Event::findOrFail($id);
+        return view('events.usershow', compact('event'));
     }
 
     /**
