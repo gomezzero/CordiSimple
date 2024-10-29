@@ -1,4 +1,4 @@
-@extends('Admin.personal')
+@extends('layouts.personal')
 
 @section('title', 'Lista de Eventos')
 

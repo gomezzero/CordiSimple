@@ -1,4 +1,4 @@
-@extends('Admin.personal')
+@extends('layouts.personal')
 
 @section('content')
     <div class="container mx-auto py-8">
