@@ -14,10 +14,9 @@ Route::get('/dashboard', [EventController::class, 'indexDashboard'])
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
+Route::get('/', [EventController::class, 'indexWelcome'])
+    ->name('welcome');
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
 
 // Rutas de eventos
 Route::get('events', [EventController::class, 'index'])->name('events.index'); // Cambiado a 'events.index'
@@ -36,4 +35,4 @@ Route::get('/events/{eventId}/schedule', [ReservationController::class, 'storeFo
 Route::get('/reservations', [ReservationController::class, 'index'])->name('reservations.index');
 
 // Incluir las rutas de autenticación
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
