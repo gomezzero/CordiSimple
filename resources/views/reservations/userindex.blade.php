@@ -9,6 +9,9 @@
         @else
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 @foreach ($reservations as $reservation)
+
+                    @if ($reservation->event != null)
+
                     <div class="block p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-200">
                         <h5 class="text-2xl font-semibold mb-2 text-gray-800">{{ $reservation->event->name }}</h5>
                         <p class="text-gray-600 mb-4">{{ Str::limit($reservation->event->description, 100) }}</p>
@@ -31,6 +34,14 @@
                             <span>{{ $reservation->event->location }}</span>
                         </div>
                     </div>
+                        </a>
+                    @else
+                        <a href="{{ route('events.show', $reservation->id) }}"
+                            class="block p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-200">
+                            <h5 class="text-2xl font-semibold mb-2 text-gray-800">{{ ESTE EVENTO HA SIDO ELIMINADO }}</h5>
+                            
+                        </a>
+                    @endif
                 @endforeach
             </div>
         @endif
