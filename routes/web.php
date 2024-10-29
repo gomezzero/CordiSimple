@@ -33,6 +33,7 @@ Route::put('/user/update', [UserController::class, 'update'])->name('user.update
 // reservetion
 Route::get('/events/{eventId}/schedule', [ReservationController::class, 'storeForEvent'])->name('reservations.schedule');
 Route::get('/reservations', [ReservationController::class, 'index'])->name('reservations.index');
+Route::get('/reservations/{id}', [ReservationController::class, 'destroy'])->name('reservations.destroy');
 
 // Incluir las rutas de autenticación
 require __DIR__ . '/auth.php';
