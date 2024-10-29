@@ -41,8 +41,17 @@ class ReservationController extends Controller
         if (!$user) {
             return redirect()->route('login')->with('error', 'Debes iniciar sesión para agendar un evento.');
         }
+        // Verificar si ya existe una reserva
+        $existingReservation = Reservation::where('user_id', $user->id)
+            ->where('event_id', $eventId)
+            ->first();
 
-        // Crear la reserva
+
+        if ($existingReservation) {
+            return redirect()->route('events.usershow', $eventId)->with('error', 'Ya tienes una reserva para este evento.');
+        }
+
+        // Crear la reserva si no existe una para este evento
         $reservation = new Reservation();
         $reservation->status = 'Agendada';
         $reservation->user_id = $user->id;

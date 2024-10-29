@@ -16,8 +16,8 @@
             <div class="flex justify-between h-16">
                 <div class="flex">
                     <!-- Logo -->
-                    <div class="shrink-0 flex items-center">
-                        <a href="{{ route('dashboard') }}">
+                    <div class="shrink-0 flex items-center pr-4">
+                        <a href="{{ route('welcome') }}">
                             <img src="{{ asset('logo.png') }}" alt="Logo" class="h-12 w-12 object-cover rounded-full" />
                         </a>
                     </div>
