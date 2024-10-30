@@ -58,7 +58,7 @@ class ReservationController extends Controller
         }
 
         // Verificar si ya existe una reserva para este evento y usuario
-        $existingReservation = Reservation::where('user_id', $user->id)->where('event_id', $eventId)->first();
+        $existingReservation = Reservation::where('user_id', $user->id)->where('event_id', $eventId)->where('status', 'Agendada')->first();
 
         if ($existingReservation) {
             return redirect()->route('events.usershow', $eventId)->with('error', 'Ya tienes una reserva para este evento.');
