@@ -23,10 +23,15 @@
                         </div>
                         <div class="text-sm text-gray-500 mb-2 flex justify-between items-center">
                             <span class="font-semibold">Estado de la Reserva:</span> {{ ucfirst($reservation->status) }}
-                            <button
-                                class="w-20 h-10 rounded-full bg-red-500 text-white hover:bg-red-600 focus:outline-none">
-                                <span class="material-icons">Cancelar</span>
-                            </button>
+
+                            <!-- Formulario para cancelar la reserva -->
+                            <form action="{{ route('reservations.cancel', $reservation->id) }}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas cancelar esta reserva?');">
+                                @csrf
+                                @method('PUT') <!-- Cambia el método a PUT -->
+                                <button type="submit" class="w-20 h-10 rounded-full bg-red-500 text-white hover:bg-red-600 focus:outline-none">
+                                    <span class="material-icons">Cancelar</span>
+                                </button>
+                            </form>
                         </div>
 
                         <div class="text-sm text-gray-500 mb-4">
