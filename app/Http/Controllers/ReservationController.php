@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Reservation;
 use App\Http\Requests\ReservationRequest;
+use App\Models\Event;
 use Illuminate\Support\Facades\Auth;
 
 class ReservationController extends Controller
@@ -41,25 +42,34 @@ class ReservationController extends Controller
         if (!$user) {
             return redirect()->route('login')->with('error', 'Debes iniciar sesión para agendar un evento.');
         }
-        // Verificar si ya existe una reserva
-        $existingReservation = Reservation::where('user_id', $user->id)
-            ->where('event_id', $eventId)
-            ->first();
 
+        // Verificar si el evento existe y tiene cupos disponibles
+        $event = Event::find($eventId);
+
+        if ($event->availableSports == 0) {
+            return redirect()->route('events.usershow', $eventId)->with('error', 'Este evento no tiene cupos disponibles');
+        }
+
+        // Verificar si ya existe una reserva para este evento y usuario
+        $existingReservation = Reservation::where('user_id', $user->id)->where('event_id', $eventId)->first();
 
         if ($existingReservation) {
             return redirect()->route('events.usershow', $eventId)->with('error', 'Ya tienes una reserva para este evento.');
         }
 
-        // Crear la reserva si no existe una para este evento
+        // Crear la reserva y reducir availableSports
         $reservation = new Reservation();
         $reservation->status = 'Agendada';
         $reservation->user_id = $user->id;
         $reservation->event_id = $eventId;
         $reservation->save();
 
-        return redirect()->route('events.usershow', $eventId)->with('success', 'Reserva creada exitosamente.');
+        $event->decrement('availableSports');
+
+        return redirect()->route('events.usershow', $eventId)
+            ->with('success', 'Reserva creada exitosamente.');
     }
+
     /**
      * Store a newly created resource in storage.
      */
@@ -132,6 +142,11 @@ class ReservationController extends Controller
 
         if (!$reservation) {
             return response()->json(['message' => 'Reserva no encontrada'], 404);
+        }
+
+        $event = Event::find($reservation->event_id);
+        if ($event && $event->availableSports < $event->max_capacity) {
+            $event->increment('availableSports');
         }
 
         // Eliminar la reserva
