@@ -1,5 +1,4 @@
-@extends('Admin.personal')
-
+<x-app-layout>
 @section('content')
     <div class="container mx-auto py-8">
         <h1 class="text-3xl font-bold text-center mb-6">Mis Reservas</h1>
@@ -52,3 +51,5 @@
         @endif
     </div>
 @endsection
+</x-app-layout>
+@include('layouts.partials.footer')
