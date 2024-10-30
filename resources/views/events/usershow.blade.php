@@ -1,4 +1,4 @@
-@extends('Admin.personal')
+<x-app-layout>
 
 @section('title', 'Detalles del Evento')
 
@@ -58,3 +58,5 @@
         </div>
     </div>
 @endsection
+</x-app-layout>
+@include('layouts.partials.footer')
