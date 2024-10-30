@@ -1,5 +1,5 @@
 @auth
-    @include('layouts.app-navbar')
+    @include('layouts.partials.app-navbar')
 @else
-    @include('layouts.guest-navbar')
+    @include('layouts.partials.guest-navbar')
 @endauth

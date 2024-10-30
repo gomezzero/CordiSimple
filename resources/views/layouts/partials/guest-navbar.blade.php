@@ -1,4 +1,4 @@
-<nav class="container mx-auto flex justify-between items-center">
+<nav class="container mx-auto flex justify-between items-center h-16">
     <a href="{{ route('welcome') }}" class="text-2xl font-bold text-gray-800 dark:text-white">CordiSimple</a>
     <div>
         <a href="{{ route('register') }}"

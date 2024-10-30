@@ -7,11 +7,12 @@
     @vite('resources/css/app.css')
 </head>
 
-<body class="bg-gray-100 relative pb-24">
+<body class="bg-gray-100 flex flex-col min-h-screen">
     <header class="bg-white dark:bg-gray-900 shadow">
         @include('layouts.partials.navbar')
     </header>
-    <main>
+
+    <main class="flex-grow">
         <section class="relative h-[100vh]">
             <img src="{{ asset('banner.jpeg') }}" alt="Banner Hero" class="w-full h-full object-cover">
             <div class="absolute inset-0 bg-black opacity-50"></div>
@@ -54,7 +55,8 @@
         @if ($events->isEmpty())
             <p class="text-center text-gray-600">No hay eventos disponibles.</p>
         @else
-            <div class="flex flex-wrap justify-center gap-4">
+        <h2 class="text-5xl font-bold text-gray-800 dark:text-gray-800 mb-8 mx auto text-center">Events near to you</h2>
+            <div class="flex flex-wrap justify-center gap-4 py-8">
                 @foreach ($events as $event)
                     <div
                         class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
@@ -80,10 +82,6 @@
         @endif
     </main>
 
-    <footer class="bg-white dark:bg-gray-900 py-8 absolute bottom-0 w-full">
-        <div class="container mx-auto text-center text-gray-600 dark:text-gray-400">
-            &copy; CordiSimple 2024. All rights reserved.
-        </div>
-    </footer>
+    @include('layouts.partials.footer')
 </body>
 </html>
