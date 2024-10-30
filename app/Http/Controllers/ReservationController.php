@@ -14,9 +14,16 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        $reservations = auth()->user()->reservations()->with('event')->get();
+        $reservations = auth()->user()->reservations()->where('status', 'Agendada')->with('event')->get();
+
 
         return view('reservations.userindex', compact('reservations'));
+    }
+
+    public function indexAdmin()
+    {
+        $reservations = Reservation::all();
+        return view('reservations.index', compact('reservations'));
     }
 
     /**
@@ -153,5 +160,19 @@ class ReservationController extends Controller
         $reservation->delete();
 
         return response()->json(['message' => 'Reserva eliminada con éxito']);
+    }
+
+    public function updateStatus(string $id)
+    {
+        // Busca la reserva usando el ID y actualiza su estado
+        $reservation = Reservation::findOrFail($id);
+        $reservation->status = 'Cancelado';
+
+                $event = Event::find($reservation->event_id);
+        if ($event && $event->availableSpots < $event->max_capacity) {
+            $event->increment('availableSpots');
+        }
+        // Redirige a la ruta `reservations.index` con un mensaje de éxito
+        return redirect()->route('reservations.index')->with('success', 'La reserva ha sido cancelada exitosamente.');
     }
 }

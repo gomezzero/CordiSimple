@@ -32,8 +32,11 @@ Route::put('/user/update', [UserController::class, 'update'])->name('user.update
 
 // reservetion
 Route::get('/events/{eventId}/schedule', [ReservationController::class, 'storeForEvent'])->name('reservations.schedule');
-Route::get('/reservations', [ReservationController::class, 'index'])->name('reservations.index');
-Route::get('/reservations/{id}', [ReservationController::class, 'destroy'])->name('reservations.destroy');
+Route::get('/reservations', [ReservationController::class, 'index'])->name('reservations.userindex');
+Route::get('admin/reservations', [ReservationController::class, 'indexAdmin'])->name('reservations.index');
+Route::post('/reservations/{id}', [ReservationController::class, 'destroy'])->name('reservations.destroy');
+Route::put('/reservations/{id}/cancel', [ReservationController::class, 'updateStatus'])->name('reservations.cancel');
+
 
 // Incluir las rutas de autenticación
 require __DIR__ . '/auth.php';
