@@ -46,7 +46,7 @@ class ReservationController extends Controller
         // Verificar si el evento existe y tiene cupos disponibles
         $event = Event::find($eventId);
 
-        if ($event->availableSports == 0) {
+        if ($event->availableSpots == 0) {
             return redirect()->route('events.usershow', $eventId)->with('error', 'Este evento no tiene cupos disponibles');
         }
 
@@ -57,14 +57,14 @@ class ReservationController extends Controller
             return redirect()->route('events.usershow', $eventId)->with('error', 'Ya tienes una reserva para este evento.');
         }
 
-        // Crear la reserva y reducir availableSports
+        // Crear la reserva y reducir availableSpots
         $reservation = new Reservation();
         $reservation->status = 'Agendada';
         $reservation->user_id = $user->id;
         $reservation->event_id = $eventId;
         $reservation->save();
 
-        $event->decrement('availableSports');
+        $event->decrement('availableSpots');
 
         return redirect()->route('events.usershow', $eventId)
             ->with('success', 'Reserva creada exitosamente.');
@@ -145,8 +145,8 @@ class ReservationController extends Controller
         }
 
         $event = Event::find($reservation->event_id);
-        if ($event && $event->availableSports < $event->max_capacity) {
-            $event->increment('availableSports');
+        if ($event && $event->availableSpots < $event->max_capacity) {
+            $event->increment('availableSpots');
         }
 
         // Eliminar la reserva

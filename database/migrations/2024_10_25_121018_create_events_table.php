@@ -19,7 +19,7 @@ return new class extends Migration
             $table->time('time');
             $table->string('location');
             $table->integer('max_capacity');
-            $table->integer('availableSports');
+            $table->integer('availableSpots');
             $table->string('status');
             $table->timestamps();
         });

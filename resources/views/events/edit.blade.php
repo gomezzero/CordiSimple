@@ -70,11 +70,11 @@
                 </div>
 
                 <div class="mb-6">
-                    <label for="availableSports" class="block text-gray-700 font-bold mb-2">Lugares disponibles:</label>
-                    <input type="number" name="availableSports" id="availableSports"
+                    <label for="availableSpots" class="block text-gray-700 font-bold mb-2">Lugares disponibles:</label>
+                    <input type="number" name="availableSpots" id="availableSpots"
                         class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500"
-                        value="{{ old('availableSports', $event->availableSports) }}">
-                    @error('availableSports')
+                        value="{{ old('availableSpots', $event->availableSpots) }}">
+                    @error('availableSpots')
                         <span class="text-red-500 text-sm">{{ $message }}</span>
                     @enderror
                 </div>

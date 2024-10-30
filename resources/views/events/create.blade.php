@@ -45,7 +45,7 @@
                     <label for="date" class="block text-gray-700 font-bold mb-2">Dia:</label>
                     <input type="date" name="date" id="date"
                         class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500"
-                        rows="4">{{ old('date') }}</input>
+                        rows="4">{{ old('date') }}
                     @error('date')
                         <span class="text-red-500 text-sm">{{ $message }}</span>
                     @enderror
@@ -55,7 +55,7 @@
                     <label for="time" class="block text-gray-700 font-bold mb-2">Hora:</label>
                     <input type="time" name="time" id="time"
                         class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500"
-                        rows="4">{{ old('time') }}</input>
+                        rows="4">{{ old('time') }}
                     @error('time')
                         <span class="text-red-500 text-sm">{{ $message }}</span>
                     @enderror
@@ -65,7 +65,7 @@
                     <label for="location" class="block text-gray-700 font-bold mb-2">Lugar:</label>
                     <input type="text" name="location" id="location"
                         class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500"
-                        rows="4">{{ old('location') }}</input>
+                        rows="4">{{ old('location') }}
                     @error('location')
                         <span class="text-red-500 text-sm">{{ $message }}</span>
                     @enderror
@@ -75,18 +75,18 @@
                     <label for="max_capacity" class="block text-gray-700 font-bold mb-2">Capacidad maxima:</label>
                     <input type="number" name="max_capacity" id="max_capacity"
                         class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500"
-                        rows="4">{{ old('max_capacity') }}</input>
+                        rows="4">{{ old('max_capacity') }}
                     @error('max_capacity')
                         <span class="text-red-500 text-sm">{{ $message }}</span>
                     @enderror
                 </div>
 
                 <div class="mb-6">
-                    <label for="availableSports" class="block text-gray-700 font-bold mb-2">Lugares disponibles:</label>
-                    <input type="number" name="availableSports" id="availableSports"
+                    <label for="availableSpots" class="block text-gray-700 font-bold mb-2">Lugares disponibles:</label>
+                    <input type="number" name="availableSpots" id="availableSpots"
                         class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500"
-                        rows="4">{{ old('availableSports') }}</input>
-                    @error('availableSports')
+                        rows="4">{{ old('availableSpots') }}
+                    @error('availableSpots')
                         <span class="text-red-500 text-sm">{{ $message }}</span>
                     @enderror
                 </div>

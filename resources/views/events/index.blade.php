@@ -41,7 +41,7 @@
                                 <td class="px-4 py-3">{{ $event->time }}</td>
                                 <td class="px-4 py-3">{{ $event->location }}</td>
                                 <td class="px-4 py-3">{{ $event->max_capacity }}</td>
-                                <td class="px-4 py-3">{{ $event->availableSports }}</td>
+                                <td class="px-4 py-3">{{ $event->availableSpots }}</td>
                                 <td class="px-4 py-3">
                                     <span class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full
                                         @if($event->status == 'Activo') bg-green-100 text-green-800

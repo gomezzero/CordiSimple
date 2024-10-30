@@ -27,7 +27,7 @@
                 </div>
                 <div>
                     <h2 class="text-lg font-semibold text-gray-700">Lugares Disponibles</h2>
-                    <p class="text-gray-600">{{ $event->availableSports }}</p>
+                    <p class="text-gray-600">{{ $event->availableSpots }}</p>
                 </div>
                 <div>
                     <h2 class="text-lg font-semibold text-gray-700">Estado</h2>

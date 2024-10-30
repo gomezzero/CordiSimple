@@ -17,7 +17,7 @@ class EventSeeder extends Seeder
                 'time' => '19:00',
                 'location' => 'Auditorio Nacional',
                 'max_capacity' => 500,
-                'availableSports' => 450,
+                'availableSpots' => 450,
                 'status' => 'Activo',
             ],
             [
@@ -27,7 +27,7 @@ class EventSeeder extends Seeder
                 'time' => '12:00',
                 'location' => 'Parque Central',
                 'max_capacity' => 1000,
-                'availableSports' => 900,
+                'availableSpots' => 900,
                 'status' => 'Activo',
             ],
             [
@@ -37,7 +37,7 @@ class EventSeeder extends Seeder
                 'time' => '10:00',
                 'location' => 'Museo de Arte',
                 'max_capacity' => 300,
-                'availableSports' => 290,
+                'availableSpots' => 290,
                 'status' => 'Activo',
             ],
             [
@@ -47,7 +47,7 @@ class EventSeeder extends Seeder
                 'time' => '06:00',
                 'location' => 'Ciudad Deportiva',
                 'max_capacity' => 2000,
-                'availableSports' => 1950,
+                'availableSpots' => 1950,
                 'status' => 'Activo',
             ],
             [
@@ -57,7 +57,7 @@ class EventSeeder extends Seeder
                 'time' => '09:00',
                 'location' => 'Centro de Convenciones',
                 'max_capacity' => 800,
-                'availableSports' => 750,
+                'availableSpots' => 750,
                 'status' => 'Activo',
             ],
             [
@@ -67,7 +67,7 @@ class EventSeeder extends Seeder
                 'time' => '08:00',
                 'location' => 'Club de Ajedrez',
                 'max_capacity' => 150,
-                'availableSports' => 130,
+                'availableSpots' => 130,
                 'status' => 'Activo',
             ],
         ];
@@ -81,7 +81,7 @@ class EventSeeder extends Seeder
                     'time' => $event['time'],
                     'location' => $event['location'],
                     'max_capacity' => $event['max_capacity'],
-                    'availableSports' => $event['availableSports'],
+                    'availableSpots' => $event['availableSpots'],
                     'status' => $event['status'],
                 ]
             );
