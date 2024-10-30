@@ -14,6 +14,7 @@
 
                     <div class="block p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-200">
                         <h5 class="text-2xl font-semibold mb-2 text-gray-800">{{ $reservation->event->name }}</h5>
+                        <h5 class="text-2xl font-semibold mb-2 text-gray-800">{{ $reservation->event->availableSpots }}</h5>
                         <p class="text-gray-600 mb-4">{{ Str::limit($reservation->event->description, 100) }}</p>
                         <div class="text-sm text-gray-500 mb-2">
                             <span class="font-semibold">Fecha:</span>

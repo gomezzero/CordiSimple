@@ -148,7 +148,7 @@ class ReservationController extends Controller
         $reservation = Reservation::find($id);
 
         if (!$reservation) {
-            return response()->json(['message' => 'Reserva no encontrada'], 404);
+            return redirect()->route('reservations.index')->with('error', 'Ruta no encontrada');
         }
 
         $event = Event::find($reservation->event_id);
@@ -159,7 +159,7 @@ class ReservationController extends Controller
         // Eliminar la reserva
         $reservation->delete();
 
-        return response()->json(['message' => 'Reserva eliminada con éxito']);
+        return redirect()->route('reservations.index')->with('success', 'La reserva ha sido eliminada exitosamente.');
     }
 
     public function updateStatus(string $id)
@@ -167,12 +167,13 @@ class ReservationController extends Controller
         // Busca la reserva usando el ID y actualiza su estado
         $reservation = Reservation::findOrFail($id);
         $reservation->status = 'Cancelado';
+        $reservation->save();
 
-                $event = Event::find($reservation->event_id);
+            $event = Event::find($reservation->event_id);
         if ($event && $event->availableSpots < $event->max_capacity) {
             $event->increment('availableSpots');
         }
         // Redirige a la ruta `reservations.index` con un mensaje de éxito
-        return redirect()->route('reservations.index')->with('success', 'La reserva ha sido cancelada exitosamente.');
+        return redirect()->route('reservations.userindex')->with('success', 'La reserva ha sido cancelada exitosamente.');
     }
 }
