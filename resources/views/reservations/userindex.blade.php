@@ -38,8 +38,8 @@
                     @else
                         <a href="{{ route('events.show', $reservation->id) }}"
                             class="block p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-200">
-                            <h5 class="text-2xl font-semibold mb-2 text-gray-800">{{ ESTE EVENTO HA SIDO ELIMINADO }}</h5>
-                            
+                            <h5 class="text-2xl font-semibold mb-2 text-gray-800">ESTE EVENTO HA SIDO ELIMINADO</h5>
+
                         </a>
                     @endif
                 @endforeach
