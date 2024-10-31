@@ -46,10 +46,10 @@
                 <a href="{{ route('events.edit', $event->id) }}" class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded shadow">
                     Editar Evento
                 </a>
-                <form action="{{ route('events.destroy', $event->id) }}" method="POST" onsubmit="return confirm('¿Estás seguro de eliminar este evento?')">
+                <form id="deleteForm-{{ $event->id }}" action="{{ route('events.destroy', $event->id) }}" method="POST">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded shadow">
+                    <button type="button" onclick="confirmarEliminacion('deleteForm-{{ $event->id }}')" class="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded shadow">
                         Eliminar Evento
                     </button>
                 </form>
