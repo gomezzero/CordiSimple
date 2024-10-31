@@ -54,5 +54,11 @@ class User extends Authenticatable
     {
         return $this->hasMany(Reservation::class, 'user_id');
     }
+
+    // Método para verificar si el usuario es administrador
+    public function isAdmin()
+    {
+        return $this->role === 'admin'; // O cualquier otro valor que uses para identificar a un admin
+    }
 }
     

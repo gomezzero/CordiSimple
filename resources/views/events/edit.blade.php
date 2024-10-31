@@ -1,9 +1,7 @@
-@extends('Admin.personal')
-
+<x-app-layout>
+    @section('title', 'Editar el evento')
 @section('content')
     <div class="container mx-auto py-8">
-        <h1 class="text-3xl font-bold text-center text-gray-800 mb-6">Editar el evento</h1>
-
         <div class="bg-white shadow-md rounded-lg overflow-hidden">
             <form action="{{ route('events.update', $event->id) }}" method="POST" class="px-8 py-8">
                 @csrf
@@ -102,4 +100,5 @@
         </div>
     </div>
 @endsection
-
+</x-app-layout>
+@include('layouts.partials.footer')
