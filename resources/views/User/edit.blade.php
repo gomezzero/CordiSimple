@@ -2,16 +2,20 @@
     @section('title', 'Edit Profile')
 
     @section('content')
-        <main class="flex items-center justify-center min-h-screen dark:bg-gray-900">
+        <main class="flex justify-center  dark:bg-gray-900">
             <!-- Session Status -->
             @if (session('success'))
                 <div class="mb-4 text-green-600">{{ session('success') }}</div>
             @endif
 
             <form action="{{ route('user.update', Auth::id()) }}" method="POST"
-                class="w-full max-w-sm p-6 bg-gray-900 text-white border border-gray-200 rounded-lg shadow space-y-6">
+                class="w-full max-w-sm p-4 bg-gray-900 text-white border border-gray-200 rounded-lg shadow space-y-6 ">
                 @csrf
                 @method('PUT')
+
+                <!-- Title -->
+                <h1 class="text-lg font-bold text-white ">{{ __('Edit Profile') }}</h1>
+
                 <!-- Name -->
                 <div>
                     <label for="name" class="block text-sm font-medium text-white text-left">{{ __('Name') }}</label>
@@ -19,7 +23,7 @@
                         autocomplete="name"
                         class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 text-black" />
                     @error('name')
-                        <div class="text-red-500 mt-2">{{ $message }}</div>
+                        <div class="text-red-500 mt-1">{{ $message }}</div>
                     @enderror
                 </div>
 
@@ -30,7 +34,7 @@
                         autocomplete="email"
                         class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 text-black" />
                     @error('email')
-                        <div class="text-red-500 mt-2">{{ $message }}</div>
+                        <div class="text-red-500">{{ $message }}</div>
                     @enderror
                 </div>
 
@@ -57,9 +61,9 @@
                 </button>
 
                 <!-- Cancel Button -->
-                <div class="text-sm font-medium text-gray-500 dark:text-gray-300 mt-4">
+                <div class="text-sm font-medium text-gray-500 dark:text-gray-300 mt-2">
                     <a href="{{ route('dashboard') }}"
-                        class="w-full block text-center text-white bg-red-500 py-2 rounded-md mt-4 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500">
+                        class="w-full block text-center text-white bg-red-500 py-2 rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500">
                         {{ __('Cancel') }}
                     </a>
                 </div>
