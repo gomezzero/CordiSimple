@@ -30,6 +30,7 @@ Route::delete('events/{id}', [EventController::class, 'destroy'])->name('events.
 Route::get('/user/edit', [UserController::class, 'edit'])->name('user.edit');
 Route::put('/user/update', [UserController::class, 'update'])->name('user.update');
 
+
 // reservation
 Route::get('/events/{eventId}/schedule', [ReservationController::class, 'storeForEvent'])->name('reservations.schedule');
 Route::get('/reservations', [ReservationController::class, 'index'])->name('reservations.userindex');
