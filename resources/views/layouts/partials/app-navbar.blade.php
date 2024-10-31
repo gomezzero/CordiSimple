@@ -50,7 +50,7 @@
                     <div x-show="open" class="absolute right-0 z-10 mt-2 w-48 bg-gray-800 rounded-md shadow-lg">
                         <div class="py-1">
                             <!-- Enlace para editar el perfil -->
-                            <a href="{{ route('user.edit') }}"
+                            <a href="{{ route('profile.edit') }}"
                                 class="block w-full text-left px-4 py-2 text-sm text-gray-300 hover:bg-gray-700">
                                 {{ __('Edit Profile') }}
                             </a>
