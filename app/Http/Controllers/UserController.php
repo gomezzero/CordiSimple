@@ -4,9 +4,44 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User; // Adjust the namespace according to your structure
+
 
 class UserController extends Controller
 {
+    public function index()
+    {
+        // Obtiene todos los usuarios
+        $users = User::all();
+
+        // Retorna la vista de index con los usuarios
+        return view('users.index', compact('users'));
+    }
+
+    public function show($id)
+    {
+        // Retrieve the user along with their reservations using eager loading
+        $user = User::with('reservations.event')->findOrFail($id);
+
+        // Return the 'show' view with the user data
+        return view('users.show', compact('user'));
+    }
+
+
+    public function changeRole(Request $request, User $user)
+    {
+        // Validate the role input
+        $request->validate([
+            'role' => 'required|in:user,admin',
+        ]);
+
+        // Update the user's role
+        $user->role = $request->input('role');
+        $user->save();
+
+        return redirect()->route('users.index')->with('success', 'Role updated successfully!');
+    }
+
     /**
      * Show the form for editing the authenticated user's profile.
      */
