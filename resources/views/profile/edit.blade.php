@@ -8,7 +8,7 @@
                 <div class="mb-4 text-green-600">{{ session('success') }}</div>
             @endif
 
-            <form action="{{ route('user.update', Auth::id()) }}" method="POST"
+            <form action="{{ route('profile.update', Auth::id()) }}" method="POST"
                 class="w-full max-w-sm p-4 bg-gray-900 text-white border border-gray-200 rounded-lg shadow space-y-6 ">
                 @csrf
                 @method('PUT')
