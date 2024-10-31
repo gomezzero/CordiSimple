@@ -56,7 +56,7 @@ class UserController extends Controller
         $user = Auth::user();
 
         // Retorna la vista de edición con el usuario actual en la nueva ubicación
-        return view('User.edit', compact('user')); // Cambiado aquí
+        return view('profile.edit', compact('user')); // Cambiado aquí
     }
 
     /**

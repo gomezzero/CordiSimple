@@ -2,7 +2,7 @@
     @section('title', 'Lista de Usuarios')
 
     @section('content')
-        <div class="container mx-auto py-8 px-4">
+        <div class="container mx-auto py-8 px-4 min-h-screen" >
 
             <!-- Mensaje de éxito -->
             @if (session('success'))
@@ -52,3 +52,4 @@
         </div>
     @endsection
 </x-app-layout>
+@include('layouts.partials.footer')
