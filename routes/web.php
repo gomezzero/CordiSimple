@@ -32,6 +32,7 @@ Route::put('/user/update', [UserController::class, 'update'])->name('user.update
 Route::post('/users/{user}/role', [UserController::class, 'changeRole'])->name('users.role');
 Route::get('users/{user}', [UserController::class, 'show'])->name('users.show');
 
+
 // reservation
 Route::get('/events/{eventId}/schedule', [ReservationController::class, 'storeForEvent'])->name('reservations.schedule');
 Route::get('/reservations', [ReservationController::class, 'index'])->name('reservations.userindex');
