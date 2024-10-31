@@ -25,6 +25,9 @@
                         <x-nav-link :href="url('/admin/reservations')" :active="request()->is('admin/reservations')" class="text-gray-500 hover:bg-gray-800">
                             {{ __('All reservations') }}
                         </x-nav-link>
+                        <x-nav-link :href="url('/admin/users')" :active="request()->is('admin/users')" class="text-gray-500 hover:bg-gray-800">
+                            {{ __('Users') }}
+                        </x-nav-link>
                     @endif
                 </div>
             </div>

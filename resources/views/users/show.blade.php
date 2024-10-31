@@ -3,7 +3,6 @@
 
 @section('content')
     <div class="container mx-auto py-8 px-4">
-        <h1 class="text-3xl font-bold text-center mb-6">Detalles del Usuario</h1>
 
         <div class="bg-white shadow-md rounded-lg p-6">
             <h2 class="text-xl font-semibold mb-4">Información del Usuario</h2>
@@ -60,3 +59,4 @@
     </div>
 @endsection
 </x-app-layout>
+@include('layouts.partials.footer')
