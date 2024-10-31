@@ -29,11 +29,15 @@ Route::put('events/{id}', [EventController::class, 'update'])->name('events.upda
 Route::delete('events/{id}', [EventController::class, 'destroy'])->name('events.destroy'); // Cambiado a 'events.destroy'
 Route::get('/user/edit', [UserController::class, 'edit'])->name('user.edit');
 Route::put('/user/update', [UserController::class, 'update'])->name('user.update');
+Route::post('/users/{user}/role', [UserController::class, 'changeRole'])->name('users.role');
+Route::get('users/{user}', [UserController::class, 'show'])->name('users.show');
+
 
 // reservation
 Route::get('/events/{eventId}/schedule', [ReservationController::class, 'storeForEvent'])->name('reservations.schedule');
 Route::get('/reservations', [ReservationController::class, 'index'])->name('reservations.userindex');
 Route::get('admin/reservations', [ReservationController::class, 'indexAdmin'])->name('reservations.index');
+Route::get('admin/users', [UserController::class, 'index'])->name('users.index');
 Route::post('/reservations/{id}', [ReservationController::class, 'destroy'])->name('reservations.destroy');
 Route::put('/reservations/{id}/cancel', [ReservationController::class, 'updateStatus'])->name('reservations.cancel');
 
