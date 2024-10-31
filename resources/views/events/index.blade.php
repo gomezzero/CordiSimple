@@ -54,10 +54,12 @@
                                 <td class="px-4 py-3 flex space-x-2">
                                     <a href="{{ route('events.show', $event->id) }}" class="text-blue-600 hover:text-blue-800">Ver</a>
                                     <a href="{{ route('events.edit', $event->id) }}" class="text-indigo-600 hover:text-indigo-800">Editar</a>
-                                    <form action="{{ route('events.destroy', $event->id) }}" method="POST" onsubmit="return confirm('¿Estás seguro de eliminar este evento?')">
+                                    <form id="deleteForm-{{ $event->id }}" action="{{ route('events.destroy', $event->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="text-red-600 hover:text-red-800">Eliminar</button>
+                                        <button  type="button" onclick="confirmarEliminacion('deleteForm-{{ $event->id }}')" class="text-red-600 hover:text-red-800">
+                                            Eliminar
+                                        </button>
                                     </form>
                                 </td>
                             </tr>
