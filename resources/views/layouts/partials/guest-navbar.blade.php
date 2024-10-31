@@ -1,3 +1,5 @@
+@vite(['resources/css/app.css', 'resources/js/app.js'])
+
 <nav class="container mx-auto flex justify-between items-center h-16">
     <a href="{{ route('welcome') }}" class="text-2xl font-bold text-gray-800 dark:text-white">CordiSimple</a>
     <div>

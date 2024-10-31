@@ -28,11 +28,12 @@
                                         {{ ucfirst($reservation->status) }}
 
                                         <!-- Formulario para cancelar la reserva -->
-                                        <form action="{{ route('reservations.cancel', $reservation->id) }}" method="POST"
-                                            onsubmit="return confirm('¿Estás seguro de que deseas cancelar esta reserva?');">
+                                        <form id="deleteForm-{{ $reservation->id }}"
+                                            action="{{ route('reservations.cancel', $reservation->id) }}" method="POST">
                                             @csrf
-                                            @method('PUT') <!-- Cambia el método a PUT -->
-                                            <button type="submit"
+                                            @method('PUT')
+                                            <button type="button"
+                                                onclick="confirmarEliminacion('deleteForm-{{ $reservation->id }}')"
                                                 class="w-20 h-10 rounded-full bg-red-500 text-white hover:bg-red-600 focus:outline-none">
                                                 Cancelar
                                             </button>

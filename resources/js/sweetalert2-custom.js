@@ -7,8 +7,8 @@ export function confirmarEliminacion(formId) {
         showCancelButton: true,
         confirmButtonText: "Sí, eliminar",
         cancelButtonText: "Cancelar",
-        confirmButtonColor: '#dc2626', // Rojo (red-600)
-        cancelButtonColor: '#4f46e5',  // Índigo (indigo-600)
+        confirmButtonColor: '#dc2626',
+        cancelButtonColor: '#4f46e5',
         reverseButtons: true
     }).then((result) => {
         if (result.isConfirmed) {

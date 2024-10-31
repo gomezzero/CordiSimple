@@ -34,11 +34,10 @@
                                     <div class="text-sm text-gray-500 mb-2 flex justify-between items-center">
                                         <span class="font-semibold">Estado de la Reserva:</span>
                                         {{ ucfirst($reservation->status) }}
-                                        <!-- Formulario para cancelar la reserva -->
-                                        <form action="{{ route('reservations.destroy', $reservation->id) }}" method="POST"
-                                            onsubmit="return confirm('¿Estás seguro de que deseas eliminar esta reserva?');">
+                                        <!-- Formulario para eliminar la reserva -->
+                                        <form id="deleteForm-{{ $reservation->id }}" action="{{ route('reservations.destroy', $reservation->id) }}" method="POST">
                                             @csrf
-                                            <button type="submit"
+                                            <button type="button" onclick="confirmarEliminacion('deleteForm-{{ $reservation->id }}')"
                                                 class="w-20 h-10 rounded-full bg-red-500 text-white hover:bg-red-600 focus:outline-none">
                                                 <span class="material-icons">Eliminar</span>
                                             </button>
@@ -75,10 +74,9 @@
                                         <span class="font-semibold">Estado de la Reserva:</span>
                                         {{ ucfirst($reservation->status) }}
                                         <!-- Formulario para cancelar la reserva -->
-                                        <form action="{{ route('reservations.destroy', $reservation->id) }}" method="POST"
-                                            onsubmit="return confirm('¿Estás seguro de que deseas eliminar esta reserva?');">
+                                        <form id="deleteForm-{{ $reservation->id }}" action="{{ route('reservations.destroy', $reservation->id) }}" method="POST">
                                             @csrf
-                                            <button type="submit"
+                                            <button type="button" onclick="confirmarEliminacion('deleteForm-{{ $reservation->id }}')"
                                                 class="w-20 h-10 rounded-full bg-red-500 text-white hover:bg-red-600 focus:outline-none">
                                                 <span class="material-icons">Eliminar</span>
                                             </button>
