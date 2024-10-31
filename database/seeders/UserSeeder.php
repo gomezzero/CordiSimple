@@ -30,5 +30,38 @@ class UserSeeder extends Seeder
                 'role' => 'user',
             ]
         );
+
+        User::firstOrCreate(
+            ['email' => 'alejo@example.com'],
+            [
+                'name' => 'alejomi',
+                'password' => Hash::make('password'),
+                'role' => 'user',
+            ]
+        );
+        User::firstOrCreate(
+            ['email' => 'edgar@example.com'],
+            [
+                'name' => 'edgar',
+                'password' => Hash::make('password'),
+                'role' => 'user',
+            ]
+        );
+        User::firstOrCreate(
+            ['email' => 'pablo@example.com'],
+            [
+                'name' => 'pablo',
+                'password' => Hash::make('password'),
+                'role' => 'user',
+            ]
+        );
+        User::firstOrCreate(
+            ['email' => 'bryant@example.com'],
+            [
+                'name' => 'bryant',
+                'password' => Hash::make('password'),
+                'role' => 'user',
+            ]
+        );
     }
 }
