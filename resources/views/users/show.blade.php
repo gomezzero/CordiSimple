@@ -2,7 +2,7 @@
 @section('title', 'Detalles del Usuario')
 
 @section('content')
-    <div class="container mx-auto py-8 px-4">
+    <div class="container mx-auto py-8 px-4 min-h-screen">
 
         <div class="bg-white shadow-md rounded-lg p-6">
             <h2 class="text-xl font-semibold mb-4">Información del Usuario</h2>

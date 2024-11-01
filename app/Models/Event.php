@@ -18,6 +18,7 @@ class Event extends Model
         'location',
         'max_capacity',
         'availableSpots',
-        'status'
+        'status',
+        'image_url',
     ];
 }
