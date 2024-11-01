@@ -1,7 +1,7 @@
 <x-app-layout>
     @section('title', 'Editar el evento')
 @section('content')
-    <div class="container mx-auto py-8">
+    <div class="container mx-auto py-8 ">
         <div class="bg-white shadow-md rounded-lg overflow-hidden">
             <form action="{{ route('events.update', $event->id) }}" method="POST" class="px-8 py-8">
                 @csrf

@@ -1,4 +1,4 @@
-<header class="bg-white dark:bg-gray-900 shadow">
+<header class="bg-gradient-to-r from-[#021b79] to-[#021b50]">
     @include('layouts.partials.navbar')
 </header>
 <x-guest-layout >

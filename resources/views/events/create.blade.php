@@ -1,9 +1,7 @@
-@extends('Admin.personal')
-
+<x-app-layout>
+@section('title','Create a new event')
 @section('content')
-    <div class="container mx-auto py-8">
-        <h1 class="text-3xl font-bold text-center text-gray-800 mb-6">crear el evento</h1>
-        
+    <div class="container mx-auto py-8">     
         <!-- Verifica si hay errores de validación -->
         @if ($errors->any())
             <div class="bg-red-100 text-red-700 border border-red-400 rounded-md p-4 mb-6">
@@ -22,7 +20,7 @@
                 @method('POST')
 
                 <div class="mb-4">
-                    <label for="name" class="block text-gray-700 font-bold mb-2">nombre del evento:</label>
+                    <label for="name" class="block text-gray-700 font-bold mb-2">Nombre del evento:</label>
                     <input type="text" name="name" id="name"
                         class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500"
                         value="{{ old('nombre') }}" required>
@@ -90,6 +88,15 @@
                         <span class="text-red-500 text-sm">{{ $message }}</span>
                     @enderror
                 </div>
+                <div class="mb-6">
+                    <label for="image_url" class="block text-gray-700 font-bold mb-2">Url de imagen:</label>
+                    <input type="text" name="image_url" id="image_url"
+                        class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500"
+                        rows="4">{{ old('image_url') }}
+                    @error('image_url')
+                        <span class="text-red-500 text-sm">{{ $message }}</span>
+                    @enderror
+                </div>
 
                 <div class="mb-6">
                     <label for="status" class="block text-gray-700 font-bold mb-2">Status:</label>
@@ -114,3 +121,6 @@
         </div>
     </div>
 @endsection
+</x-app-layout>
+
+@include('layouts.partials.footer')
