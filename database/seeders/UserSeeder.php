@@ -52,7 +52,7 @@ class UserSeeder extends Seeder
             [
                 'name' => 'pablo',
                 'password' => Hash::make('password'),
-                'role' => 'user',
+                'role' => 'admin',
             ]
         );
         User::firstOrCreate(
