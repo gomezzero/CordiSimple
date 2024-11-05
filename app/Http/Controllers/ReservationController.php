@@ -57,10 +57,15 @@ class ReservationController extends Controller
 
         $event->decrement('availableSpots');
 
+
         // Enviar la notificación al usuario
         $user->notify(new ReservationConfirmation($reservation));
 
+        return redirect()->route('events.usershow', $eventId)
+            ->with('success', 'Reserva creada exitosamente.');
+
         return redirect()->route('dashboard', $eventId)->with('success', 'Reserva creada exitosamente.');
+
     }
 
     /**
@@ -123,11 +128,13 @@ class ReservationController extends Controller
         $reservation->update(['status' => 'Cancelado']);
         $this->updateEventSpots($reservation->event_id, 'increment');
 
+
         $event = Event::find($reservation->event_id);
         if ($event && $event->availableSpots < $event->max_capacity) {
             $event->increment('availableSpots');
         }
         // Redirige a la ruta `reservations.index` con un mensaje de éxito
+
         return redirect()->route('reservations.userindex')->with('success', 'La reserva ha sido cancelada exitosamente.');
     }
 
