@@ -41,6 +41,7 @@ Route::get('admin/reservations', [ReservationController::class, 'indexAdmin'])->
 Route::get('admin/users', [UserController::class, 'index'])->name('users.index');
 Route::post('/reservations/{id}', [ReservationController::class, 'destroy'])->name('reservations.destroy');
 Route::put('/reservations/{id}/cancel', [ReservationController::class, 'updateStatus'])->name('reservations.cancel');
+Route::put('/reservations/cancel/{id}', [ReservationController::class, 'cancel'])->name('reservations.cancel');
 
 
 // Incluir las rutas de autenticación

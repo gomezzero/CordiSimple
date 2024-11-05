@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Notifications\ReservationConfirmation;
+use App\Notifications\ReservationCanceledNotification;
 use App\Models\Reservation;
+use Illuminate\Http\Request;
 use App\Http\Requests\ReservationRequest;
 use App\Models\Event;
 use Illuminate\Support\Facades\Auth;
@@ -31,10 +33,9 @@ class ReservationController extends Controller
     public function storeForEvent($eventId)
     {
         $user = Auth::user();
-        if (!$user)
-        {
+        if (!$user) {
             return redirect()->route('login')->with('error', 'Debes iniciar sesión para agendar un evento.');
-        } 
+        }
 
         $event = Event::find($eventId);
 
@@ -65,7 +66,6 @@ class ReservationController extends Controller
             ->with('success', 'Reserva creada exitosamente.');
 
         return redirect()->route('dashboard', $eventId)->with('success', 'Reserva creada exitosamente.');
-
     }
 
     /**
@@ -121,7 +121,7 @@ class ReservationController extends Controller
         $reservations = Reservation::all();
         return view('reservations.index', compact('reservations'));
     }
-    
+
     public function updateStatus($id)
     {
         $reservation = Reservation::findOrFail($id);
@@ -157,5 +157,27 @@ class ReservationController extends Controller
         if ($event && ($event->availableSpots < $event->max_capacity || $operation === 'decrement')) {
             $event->$operation('availableSpots');
         }
+    }
+
+
+
+    // En tu ReservationController
+    public function cancel(Request $request, $id)
+    {
+        // Obtener la reserva
+        $reservation = Reservation::findOrFail($id);
+
+        // Cambiar el estado de la reserva a cancelada (o eliminarla)
+        $reservation->status = 'cancelada'; // o usar $reservation->delete();
+        $reservation->save();
+
+        // Obtener el usuario que hizo la reserva
+        $user = $reservation->user;
+
+        // Enviar notificación al usuario
+        $user->notify(new ReservationCanceledNotification($reservation));
+
+        // Redirigir o retornar respuesta
+        return redirect()->route('reservations.index')->with('success', 'Reserva cancelada y notificación enviada.');
     }
 }
