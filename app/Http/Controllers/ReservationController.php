@@ -16,7 +16,6 @@ class ReservationController extends Controller
     {
         $reservations = auth()->user()->reservations()->where('status', 'Agendada')->with('event')->get();
 
-
         return view('reservations.userindex', compact('reservations'));
     }
 
@@ -54,14 +53,18 @@ class ReservationController extends Controller
         $event = Event::find($eventId);
 
         if ($event->availableSpots == 0) {
-            return redirect()->route('events.usershow', $eventId)->with('error', 'Este evento no tiene cupos disponibles');
+            return redirect()->route('dashboard', $eventId)->with('error', 'Este evento no tiene cupos disponibles');
+        }
+        elseif ($event->status == 'Cancelado')
+        {
+            return redirect()->route('dashboard', $eventId)->with('error', 'Este evento esta cancelado');
         }
 
         // Verificar si ya existe una reserva para este evento y usuario
         $existingReservation = Reservation::where('user_id', $user->id)->where('event_id', $eventId)->where('status', 'Agendada')->first();
 
         if ($existingReservation) {
-            return redirect()->route('events.usershow', $eventId)->with('error', 'Ya tienes una reserva para este evento.');
+            return redirect()->route('dashboard', $eventId)->with('error', 'Ya tienes una reserva para este evento.');
         }
 
         // Crear la reserva y reducir availableSpots
@@ -73,7 +76,7 @@ class ReservationController extends Controller
 
         $event->decrement('availableSpots');
 
-        return redirect()->route('events.usershow', $eventId)
+        return redirect()->route('dashboard', $eventId)
             ->with('success', 'Reserva creada exitosamente.');
     }
 
