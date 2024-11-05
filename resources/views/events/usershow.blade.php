@@ -33,8 +33,8 @@
                         <h2 class="text-lg font-semibold text-gray-700">Estado</h2>
                         <span
                             class="px-3 py-1 inline-flex text-sm leading-5 font-semibold rounded-full
-                        @if ($event->status == 'Active') bg-green-100 text-green-800
-                        @elseif($event->status == 'Canceled') bg-red-100 text-red-800
+                        @if ($event->status == 'Activo') bg-green-100 text-green-800
+                        @elseif($event->status == 'Cancelado') bg-red-100 text-red-800
                         @else bg-yellow-100 text-yellow-800 @endif">
                             {{ $event->status }}
                         </span>

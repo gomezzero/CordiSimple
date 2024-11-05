@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('description');
             $table->date('date');
-            $table->time('time');
+            $table->string('time');
             $table->string('location');
             $table->integer('max_capacity');
             $table->integer('availableSpots');
