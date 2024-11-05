@@ -1,7 +1,7 @@
 <x-app-layout>
     @section('title', 'Todas las reservas')
     @section('content')
-        <div class="container mx-auto py-8">
+        <div class="container mx-auto py-8 min-h-screen">
             @if ($reservations->isEmpty())
                 <p class="text-center text-gray-500">No hay eventos reservados.</p>
             @else
