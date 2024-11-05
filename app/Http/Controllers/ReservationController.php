@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Notifications\ReservationConfirmation;
 use App\Models\Reservation;
 use App\Http\Requests\ReservationRequest;
 use App\Models\Event;
@@ -72,6 +73,9 @@ class ReservationController extends Controller
         $reservation->save();
 
         $event->decrement('availableSpots');
+
+        // Enviar la notificación al usuario
+        $user->notify(new ReservationConfirmation($reservation));
 
         return redirect()->route('events.usershow', $eventId)
             ->with('success', 'Reserva creada exitosamente.');
@@ -169,7 +173,7 @@ class ReservationController extends Controller
         $reservation->status = 'Cancelado';
         $reservation->save();
 
-            $event = Event::find($reservation->event_id);
+        $event = Event::find($reservation->event_id);
         if ($event && $event->availableSpots < $event->max_capacity) {
             $event->increment('availableSpots');
         }
