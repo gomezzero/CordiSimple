@@ -16,68 +16,47 @@ class ReservationController extends Controller
     {
         $reservations = auth()->user()->reservations()->where('status', 'Agendada')->with('event')->get();
 
-        return view('reservations.userindex', compact('reservations'));
-    }
-
-    public function indexAdmin()
-    {
-        $reservations = Reservation::all();
-        return view('reservations.index', compact('reservations'));
+        return view('reservations.' . (Auth::user()->is_admin ? 'index' : 'userindex'), compact('reservations'));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new reservation.
      */
     public function create(ReservationRequest $request)
     {
-        $validatedData = $request->all();
-
-        // Crear la nueva reserva
-        $reservation = Reservation::create($validatedData);
-
-        return response()->json([
-            'message' => 'Reserva creada con éxito',
-            'reservation' => $reservation,
-        ], 201);
+        $reservation = $this->createReservation($request->validated());
     }
 
     public function storeForEvent($eventId)
     {
         $user = Auth::user();
-
-        if (!$user) {
+        if (!$user)
+        {
             return redirect()->route('login')->with('error', 'Debes iniciar sesión para agendar un evento.');
-        }
+        } 
 
-        // Verificar si el evento existe y tiene cupos disponibles
         $event = Event::find($eventId);
 
-        if ($event->availableSpots == 0) {
-            return redirect()->route('dashboard', $eventId)->with('error', 'Este evento no tiene cupos disponibles');
-        }
-        elseif ($event->status == 'Cancelado')
-        {
-            return redirect()->route('dashboard', $eventId)->with('error', 'Este evento esta cancelado');
+        if (!$this->checkEventAvailability($event)) {
+            return redirect()->route('dashboard', $eventId)->with('error', 'Este evento no tiene cupos disponibles o está cancelado.');
         }
 
-        // Verificar si ya existe una reserva para este evento y usuario
-        $existingReservation = Reservation::where('user_id', $user->id)->where('event_id', $eventId)->where('status', 'Agendada')->first();
+        $existingReservation = Reservation::where('user_id', $user->id)->where('event_id', $eventId)
+            ->where('status', 'Agendada')->first();
 
         if ($existingReservation) {
             return redirect()->route('dashboard', $eventId)->with('error', 'Ya tienes una reserva para este evento.');
         }
 
-        // Crear la reserva y reducir availableSpots
-        $reservation = new Reservation();
-        $reservation->status = 'Agendada';
-        $reservation->user_id = $user->id;
-        $reservation->event_id = $eventId;
-        $reservation->save();
+        $reservation = $this->createReservation([
+            'status' => 'Agendada',
+            'user_id' => $user->id,
+            'event_id' => $eventId,
+        ]);
 
         $event->decrement('availableSpots');
 
-        return redirect()->route('dashboard', $eventId)
-            ->with('success', 'Reserva creada exitosamente.');
+        return redirect()->route('dashboard', $eventId)->with('success', 'Reserva creada exitosamente.');
     }
 
     /**
@@ -85,98 +64,82 @@ class ReservationController extends Controller
      */
     public function store(ReservationRequest $request)
     {
-        // Valida los datos ingresados
-        $validatedData = $request->all();
-
-        // Crea y guarda un nuevo Event
-        Reservation::create($validatedData);
-
-        // Redirecciona con un mensaje de éxito
+        $this->createReservation($request->validated());
         return redirect()->route('reservations.index')->with('success', 'reservacion creada con éxito.');
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified reservation.
      */
     public function show($id)
     {
-        $reservation = Reservation::with(['user', 'event'])->find($id);
-
-        if (!$reservation) {
-            return response()->json(['message' => 'Reserva no encontrada'], 404);
-        }
-
+        $reservation = Reservation::with(['user', 'event'])->findOrFail($id);
         return response()->json($reservation);
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified reservation.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
         $reservation = Reservation::findOrFail($id);
         return view('reservations.edit', compact('reservation'));
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified reservation in storage.
      */
-    public function update(ReservationRequest $request, string $id)
+    public function update(ReservationRequest $request, $id)
     {
-        // Validar los datos de entrada
-        $validatedData = $request->all();
-
-        // Buscar la reserva por ID
-        $reservation = Reservation::find($id);
-
-        if (!$reservation) {
-            return response()->json(['message' => 'Reserva no encontrada'], 404);
-        }
-
-        // Actualizar los datos de la reserva
-        $reservation->update($validatedData);
-
-        return response()->json([
-            'message' => 'Reserva actualizada con éxito',
-            'reservation' => $reservation,
-        ]);
+        $reservation = Reservation::findOrFail($id);
+        $reservation->update($request->validated());
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified reservation from storage.
      */
     public function destroy($id)
     {
-        // Buscar la reserva por ID
-        $reservation = Reservation::find($id);
-
-        if (!$reservation) {
-            return redirect()->route('reservations.index')->with('error', 'Ruta no encontrada');
-        }
-
-        $event = Event::find($reservation->event_id);
-        if ($event && $event->availableSpots < $event->max_capacity) {
-            $event->increment('availableSpots');
-        }
-
-        // Eliminar la reserva
+        $reservation = Reservation::findOrFail($id);
+        $this->updateEventSpots($reservation->event_id, 'increment');
         $reservation->delete();
 
         return redirect()->route('reservations.index')->with('success', 'La reserva ha sido eliminada exitosamente.');
     }
 
-    public function updateStatus(string $id)
+    public function indexAdmin()
     {
-        // Busca la reserva usando el ID y actualiza su estado
+        $reservations = Reservation::all();
+        return view('reservations.index', compact('reservations'));
+    }
+    
+    public function updateStatus($id)
+    {
         $reservation = Reservation::findOrFail($id);
-        $reservation->status = 'Cancelado';
-        $reservation->save();
+        $reservation->update(['status' => 'Cancelado']);
+        $this->updateEventSpots($reservation->event_id, 'increment');
 
-            $event = Event::find($reservation->event_id);
-        if ($event && $event->availableSpots < $event->max_capacity) {
-            $event->increment('availableSpots');
-        }
-        // Redirige a la ruta `reservations.index` con un mensaje de éxito
         return redirect()->route('reservations.userindex')->with('success', 'La reserva ha sido cancelada exitosamente.');
+    }
+
+    /**
+     * Helper methods
+     */
+    private function createReservation(array $data)
+    {
+        return Reservation::create($data);
+    }
+
+    private function checkEventAvailability($event)
+    {
+        return $event && $event->availableSpots > 0 && $event->status !== 'Cancelado';
+    }
+
+    private function updateEventSpots($eventId, $operation = 'decrement')
+    {
+        $event = Event::find($eventId);
+        if ($event && ($event->availableSpots < $event->max_capacity || $operation === 'decrement')) {
+            $event->$operation('availableSpots');
+        }
     }
 }
