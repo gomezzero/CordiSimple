@@ -53,11 +53,12 @@
                     <label for="time" class="block text-gray-700 font-bold mb-2">Hora:</label>
                     <input type="time" name="time" id="time"
                         class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500"
-                        rows="4">{{ old('time') }}
+                        value="{{ old('time') }}">
                     @error('time')
                         <span class="text-red-500 text-sm">{{ $message }}</span>
                     @enderror
                 </div>
+                
 
                 <div class="mb-6">
                     <label for="location" class="block text-gray-700 font-bold mb-2">Lugar:</label>
@@ -103,9 +104,9 @@
                     <select name="status" id="status"
                         class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500"
                         rows="4">{{ old('status') }}
-                        <option value="Active">Activo</option>
-                        <option value="Postponed">Pospuesto</option>
-                        <option value="Canceled">Cancelado</option>
+                        <option value="Activo">Activo</option>
+                        <option value="Pospuesto">Pospuesto</option>
+                        <option value="Cancelado">Cancelado</option>
                     </select>
                     @error('status')
                         <span class="text-red-500 text-sm">{{ $message }}</span>
