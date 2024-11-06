@@ -18,12 +18,12 @@ class EventCreationTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        
+
         // Crear usuario administrador
         $this->admin = User::factory()->create([
             'role' => 'admin'
         ]);
-        
+
         // Crear usuario regular
         $this->regularUser = User::factory()->create([
             'role' => 'user'
@@ -176,4 +176,22 @@ class EventCreationTest extends TestCase
         $response->assertSessionHasErrors(['max_capacity']);
     }
 
+    public function test_validate_non_negative_available_spots(): void
+    {
+        $eventData = [
+            'name' => 'Evento de Prueba',
+            'description' => 'Descripción del evento de prueba',
+            'date' => date('Y-m-d', strtotime('+1 day')),
+            'time' => '14:00',
+            'location' => 'Centro de Convenciones',
+            'max_capacity' => 100,
+            'availableSpots' => -10, // Valor inválido
+            'status' => 'Active'
+        ];
+
+        $response = $this->actingAs($this->admin)
+            ->post(route('events.store'), $eventData);
+
+        $response->assertSessionHasErrors(['availableSpots']);
+    }
 }

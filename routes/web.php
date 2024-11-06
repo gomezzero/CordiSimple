@@ -44,5 +44,6 @@ Route::put('/reservations/{id}/cancel', [ReservationController::class, 'updateSt
 Route::put('/reservations/cancel/{id}', [ReservationController::class, 'cancel'])->name('reservations.cancel');
 
 
+
 // Incluir las rutas de autenticación
 require __DIR__ . '/auth.php';
