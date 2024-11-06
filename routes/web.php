@@ -30,6 +30,7 @@ Route::delete('events/{id}', [EventController::class, 'destroy'])->name('events.
 Route::post('/users/{user}/role', [UserController::class, 'changeRole'])->name('users.role');
 Route::get('users/{user}', [UserController::class, 'show'])->name('users.show');
 
+
 //Profiles
 Route::get('/user/edit', [UserController::class, 'edit'])->name('profile.edit');
 Route::put('/user/update', [UserController::class, 'update'])->name('profile.update');
