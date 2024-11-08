@@ -8,12 +8,20 @@ $baseDir = dirname($vendorDir);
 return array(
     'App\\Console\\Commands\\SendEventReminders' => $baseDir . '/app/Console/Commands/SendEventReminders.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
+
     'App\\Http\\Controllers\\Auth\\AuthenticatedSessionController' => $baseDir . '/app/Http/Controllers/Auth/AuthenticatedSessionController.php',
     'App\\Http\\Controllers\\Auth\\RegisteredUserController' => $baseDir . '/app/Http/Controllers/Auth/RegisteredUserController.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Http\\Controllers\\EventController' => $baseDir . '/app/Http/Controllers/EventController.php',
+
+    'App\\Http\\Controllers\\NotificationController' => $baseDir . '/app/Http/Controllers/NotificationController.php',
     'App\\Http\\Controllers\\ReservationController' => $baseDir . '/app/Http/Controllers/ReservationController.php',
     'App\\Http\\Controllers\\UserController' => $baseDir . '/app/Http/Controllers/UserController.php',
+    'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',
+
+    'App\\Http\\Controllers\\ReservationController' => $baseDir . '/app/Http/Controllers/ReservationController.php',
+    'App\\Http\\Controllers\\UserController' => $baseDir . '/app/Http/Controllers/UserController.php',
+
     'App\\Http\\Middleware\\CheckIfAdmin' => $baseDir . '/app/Http/Middleware/CheckIfAdmin.php',
     'App\\Http\\Requests\\Auth\\LoginRequest' => $baseDir . '/app/Http/Requests/Auth/LoginRequest.php',
     'App\\Http\\Requests\\EventRequest' => $baseDir . '/app/Http/Requests/EventRequest.php',
@@ -24,10 +32,15 @@ return array(
     'App\\Models\\Notification' => $baseDir . '/app/Models/Notification.php',
     'App\\Models\\Reservation' => $baseDir . '/app/Models/Reservation.php',
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',
+
+    'App\\Notifications\\ReservationCanceledNotification' => $baseDir . '/app/Notifications/ReservationCanceledNotification.php',
+    'App\\Notifications\\ReservationConfirmation' => $baseDir . '/app/Notifications/ReservationConfirmation.php',
+
     'App\\Notifications\\EventReminderNotification' => $baseDir . '/app/Notifications/EventReminderNotification.php',
     'App\\Notifications\\ReservationCanceledNotification' => $baseDir . '/app/Notifications/ReservationCanceledNotification.php',
     'App\\Notifications\\ReservationConfirmation' => $baseDir . '/app/Notifications/ReservationConfirmation.php',
     'App\\Notifications\\UserRegisteredNotification' => $baseDir . '/app/Notifications/UserRegisteredNotification.php',
+
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',
     'App\\View\\Components\\AppLayout' => $baseDir . '/app/View/Components/AppLayout.php',
     'App\\View\\Components\\GuestLayout' => $baseDir . '/app/View/Components/GuestLayout.php',
@@ -5950,6 +5963,8 @@ return array(
     'Termwind\\ValueObjects\\Node' => $vendorDir . '/nunomaduro/termwind/src/ValueObjects/Node.php',
     'Termwind\\ValueObjects\\Style' => $vendorDir . '/nunomaduro/termwind/src/ValueObjects/Style.php',
     'Termwind\\ValueObjects\\Styles' => $vendorDir . '/nunomaduro/termwind/src/ValueObjects/Styles.php',
+
+    'Tests\\CreatesApplication' => $baseDir . '/tests/CreatesApplication.php',
     'Tests\\Event\\EventCreationTest' => $baseDir . '/tests/Event/EventCreationTest.php',
     'Tests\\Event\\EventDeletionTest' => $baseDir . '/tests/Event/EventDeletionTest.php',
     'Tests\\Event\\EventEditTest' => $baseDir . '/tests/Event/EventEditTest.php',
