@@ -43,15 +43,15 @@ class EventListingTest extends TestCase
             ->assertViewHas('events');
     }
 
-    public function test_regular_user_can_view_event_listing(): void
+    public function test_regular_user_cannot_access_event_listing(): void
     {
         $response = $this->actingAs($this->regularUser)
-            ->get(route('events.index'));
+            ->get(route('events.index')); // Esto es la ruta protegida para administradores
 
-        $response->assertStatus(200)
-            ->assertViewIs('events.index')
-            ->assertViewHas('events');
+        // El acceso debe ser denegado para un usuario regular
+        $response->assertStatus(403);  // Forbidden, porque está protegido por el middleware de admin
     }
+
 
     public function test_event_listing_shows_correct_details(): void
     {

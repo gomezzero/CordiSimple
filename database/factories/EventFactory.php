@@ -13,7 +13,7 @@ class EventFactory extends Factory
     {
         return [
             'name' => $this->faker->word(),
-            'description' => $this->faker->paragraph(),
+            'description' => $this->faker->text(255),
             'date' => $this->faker->dateTimeBetween('now', '+1 year'),
             'time' => $this->faker->time(),
             'location' => $this->faker->city(),
