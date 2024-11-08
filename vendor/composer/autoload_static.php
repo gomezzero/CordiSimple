@@ -509,14 +509,24 @@ class ComposerStaticInit589cc0f65c3aaa7d4e9024d545bc1974
     );
 
     public static $classMap = array (
+
+
+        'App\\Console\\Commands\\SendEventReminders' => __DIR__ . '/../..' . '/app/Console/Commands/SendEventReminders.php',
+        'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
+
         'App\\Http\\Controllers\\Auth\\AuthenticatedSessionController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/AuthenticatedSessionController.php',
         'App\\Http\\Controllers\\Auth\\RegisteredUserController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/RegisteredUserController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\EventController' => __DIR__ . '/../..' . '/app/Http/Controllers/EventController.php',
+
         'App\\Http\\Controllers\\NotificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/NotificationController.php',
         'App\\Http\\Controllers\\ReservationController' => __DIR__ . '/../..' . '/app/Http/Controllers/ReservationController.php',
         'App\\Http\\Controllers\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
+
+        'App\\Http\\Controllers\\ReservationController' => __DIR__ . '/../..' . '/app/Http/Controllers/ReservationController.php',
+        'App\\Http\\Controllers\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserController.php',
+
         'App\\Http\\Middleware\\CheckIfAdmin' => __DIR__ . '/../..' . '/app/Http/Middleware/CheckIfAdmin.php',
         'App\\Http\\Requests\\Auth\\LoginRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Auth/LoginRequest.php',
         'App\\Http\\Requests\\EventRequest' => __DIR__ . '/../..' . '/app/Http/Requests/EventRequest.php',
@@ -527,8 +537,15 @@ class ComposerStaticInit589cc0f65c3aaa7d4e9024d545bc1974
         'App\\Models\\Notification' => __DIR__ . '/../..' . '/app/Models/Notification.php',
         'App\\Models\\Reservation' => __DIR__ . '/../..' . '/app/Models/Reservation.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
+
         'App\\Notifications\\ReservationCanceledNotification' => __DIR__ . '/../..' . '/app/Notifications/ReservationCanceledNotification.php',
         'App\\Notifications\\ReservationConfirmation' => __DIR__ . '/../..' . '/app/Notifications/ReservationConfirmation.php',
+
+        'App\\Notifications\\EventReminderNotification' => __DIR__ . '/../..' . '/app/Notifications/EventReminderNotification.php',
+        'App\\Notifications\\ReservationCanceledNotification' => __DIR__ . '/../..' . '/app/Notifications/ReservationCanceledNotification.php',
+        'App\\Notifications\\ReservationConfirmation' => __DIR__ . '/../..' . '/app/Notifications/ReservationConfirmation.php',
+        'App\\Notifications\\UserRegisteredNotification' => __DIR__ . '/../..' . '/app/Notifications/UserRegisteredNotification.php',
+
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\View\\Components\\AppLayout' => __DIR__ . '/../..' . '/app/View/Components/AppLayout.php',
         'App\\View\\Components\\GuestLayout' => __DIR__ . '/../..' . '/app/View/Components/GuestLayout.php',
@@ -6451,13 +6468,16 @@ class ComposerStaticInit589cc0f65c3aaa7d4e9024d545bc1974
         'Termwind\\ValueObjects\\Node' => __DIR__ . '/..' . '/nunomaduro/termwind/src/ValueObjects/Node.php',
         'Termwind\\ValueObjects\\Style' => __DIR__ . '/..' . '/nunomaduro/termwind/src/ValueObjects/Style.php',
         'Termwind\\ValueObjects\\Styles' => __DIR__ . '/..' . '/nunomaduro/termwind/src/ValueObjects/Styles.php',
+
         'Tests\\CreatesApplication' => __DIR__ . '/../..' . '/tests/CreatesApplication.php',
+
         'Tests\\Event\\EventCreationTest' => __DIR__ . '/../..' . '/tests/Event/EventCreationTest.php',
         'Tests\\Event\\EventDeletionTest' => __DIR__ . '/../..' . '/tests/Event/EventDeletionTest.php',
         'Tests\\Event\\EventEditTest' => __DIR__ . '/../..' . '/tests/Event/EventEditTest.php',
         'Tests\\Event\\EventListingTest' => __DIR__ . '/../..' . '/tests/Event/EventListingTest.php',
         'Tests\\Event\\EventPermissionsTest' => __DIR__ . '/../..' . '/tests/Event/EventPermissionsTest.php',
         'Tests\\Feature\\ExampleTest' => __DIR__ . '/../..' . '/tests/Feature/ExampleTest.php',
+        'Tests\\Notification\\RegisterUserNotificationTest' => __DIR__ . '/../..' . '/tests/Notification/RegisterUserNotificationTest.php',
         'Tests\\TestCase' => __DIR__ . '/../..' . '/tests/TestCase.php',
         'Tests\\Unit\\ExampleTest' => __DIR__ . '/../..' . '/tests/Unit/ExampleTest.php',
         'TheSeer\\Tokenizer\\Exception' => __DIR__ . '/..' . '/theseer/tokenizer/src/Exception.php',

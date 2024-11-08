@@ -2,13 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Middleware\CheckIfAdmin;
 
 Route::resource('users', UserController::class);
-Route::resource('notifications', NotificationController::class);
 Route::resource('reservations', ReservationController::class);
 
 Route::get('/dashboard', [EventController::class, 'indexDashboard'])
@@ -44,7 +42,8 @@ Route::post('/reservations/{id}', [ReservationController::class, 'destroy'])->na
 Route::put('/reservations/{id}/cancel', [ReservationController::class, 'updateStatus'])->name('reservations.cancel');
 Route::put('/reservations/cancel/{id}', [ReservationController::class, 'cancel'])->name('reservations.cancel');
 
-
+// Tese
+Route::post('/reservations/store-for-event/{eventId}', [ReservationController::class, 'storeForEvent'])->name('reservations.storeForEvent');
 
 // Incluir las rutas de autenticación
 require __DIR__ . '/auth.php';
