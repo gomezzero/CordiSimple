@@ -15,6 +15,7 @@ Route::get('/dashboard', [EventController::class, 'indexDashboard'])
 Route::get('/', [EventController::class, 'indexWelcome'])
     ->name('welcome');
 
+//Rutas de eventos con middleware
 
 // Rutas de eventos
 Route::get('events', [EventController::class, 'index'])->name('events.index'); // Cambiado a 'events.index'
@@ -27,6 +28,7 @@ Route::put('events/{id}', [EventController::class, 'update'])->name('events.upda
 Route::delete('events/{id}', [EventController::class, 'destroy'])->name('events.destroy'); // Cambiado a 'events.destroy'
 Route::post('/users/{user}/role', [UserController::class, 'changeRole'])->name('users.role');
 Route::get('users/{user}', [UserController::class, 'show'])->name('users.show');
+
 
 //Profiles
 Route::get('/user/edit', [UserController::class, 'edit'])->name('profile.edit');
