@@ -24,13 +24,13 @@
                     </thead>
                     <tbody>
                         @foreach ($users as $user)
-                            <tr class="{{ $user->role === 'admin' ? 'bg-yellow-200' : 'bg-blue-200' }} text-gray-700 border-b">
+                            <tr class="{{ $user->role === 'admin' ? 'bg-yellow-100' : '' }} text-gray-700 border-b">
                                 <td class="px-4 py-3">{{ $user->name }}</td>
                                 <td class="px-4 py-3">{{ $user->email }}</td>
                                 <td class="px-4 py-3">{{ $user->role }}</td>
-                                <td class="px-4 py-3 flex space-x-2 justify-around">
+                                <td class="px-4 py-3 flex space-x-2 justify-center">
                                     <!-- Show Button -->
-                                    <a href="{{ route('users.show', $user->id) }}" class="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded">
+                                    <a href="{{ route('users.show', $user->id) }}" class="text-green-600 hover:text-green-800">
                                         Ver Detalles
                                     </a>
                                     
@@ -39,10 +39,19 @@
                                     <form action="{{ route('users.role', $user->id) }}" method="POST" style="display:inline;">
                                         @csrf
                                         <input type="hidden" name="role" value="{{ $user->role === 'admin' ? 'user' : 'admin' }}">
-                                        <button type="submit" class="text-white font-semibold py-2 px-4 rounded {{ $user->role === 'admin' ? 'bg-yellow-500 hover:bg-yellow-600' : 'bg-blue-500 hover:bg-blue-600' }}">
+                                        <button type="submit" class="{{ $user->role === 'admin' ? 'text-blue-600 hover:text-blue-800' : 'text-yellow-600 hover:text-yellow-800' }}">
                                             Cambiar a {{ $user->role === 'admin' ? 'Usuario' : 'Admin' }}
                                         </button>
                                     </form>
+
+                                    
+                                    <!-- Delete Button -->
+                                    <form action="{{ route('users.destroy', $user->id) }}" method="POST" style="display:inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="text-red-600 hover:text-red-800">
+                                            Eliminar
+                                        </button>
                                 </td>
                             </tr>
                         @endforeach
