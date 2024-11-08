@@ -62,12 +62,10 @@ class EventController extends Controller
     public function show($id)
     {
         $event = Event::findOrFail($id);
-        
+
         if ($event == null) {
             return view('events.show')->with('error', 'evento eliminado');
-        }
-        else
-        {
+        } else {
             return view('events.show', compact('event'));
         }
     }
