@@ -12,9 +12,10 @@
                 <table class="w-full table-auto border-collapse bg-white shadow-md rounded-lg">
                     <thead class="bg-gray-200 text-gray-600 uppercase text-sm">
                         <tr>
+                            <th class="px-4 py-2">ID</th>
                             <th class="px-4 py-2">Nombre</th>
                             <th class="px-4 py-2">Descripción</th>
-                            <th class="px-4 py-2">Fecha</th>
+                            <th class="px-4 py-2 w-48">Fecha</th>
                             <th class="px-4 py-2">Hora</th>
                             <th class="px-4 py-2">Ubicación</th>
                             <th class="px-4 py-2">Capacidad Máxima</th>
@@ -26,6 +27,7 @@
                     <tbody>
                         @foreach($events as $event)
                             <tr class="text-gray-700 border-b hover:bg-gray-100">
+                                <td class="px-4 py-3">{{ $event->id }}</td>
                                 <td class="px-4 py-3">{{ $event->name }}</td>
                                 <td class="px-4 py-3">{{ $event->description }}</td>
                                 <td class="px-4 py-3">{{ $event->date }}</td>
