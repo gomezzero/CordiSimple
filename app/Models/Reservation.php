@@ -1,11 +1,13 @@
 <?php
 
 namespace App\Models;
-
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Notifications\ReservationConfirmation;
 
 class Reservation extends Model
 {
+    use HasFactory;
     protected $table = 'reservations';
     protected $primaryKey = 'id';
     public $timestamps = true;
@@ -31,6 +33,10 @@ class Reservation extends Model
     {
         return $this->belongsTo(Event::class);
     }
-    
-
+    public function sendConfirmationNotification()
+    {
+        // Enviar la notificación al usuario asociado con la reserva
+        $this->user->notify(new ReservationConfirmation($this));
+    }
+ 
 }
