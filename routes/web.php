@@ -17,6 +17,7 @@ Route::get('/dashboard', [EventController::class, 'indexDashboard'])
 Route::get('/', [EventController::class, 'indexWelcome'])
     ->name('welcome');
 
+//Rutas de eventos con middleware
 
 // Rutas de eventos
 Route::get('events', [EventController::class, 'index'])->name('events.index'); // Cambiado a 'events.index'
