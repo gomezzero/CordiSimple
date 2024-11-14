@@ -1,0 +1,54 @@
+name: Laravel CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main  # Se activa cuando se realiza un push en la rama 'main' (o 'master')
+  pull_request:
+    branches:
+      - main  # Se activa en los pull requests dirigidos a 'main'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Paso 1: Hacer checkout del código
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Paso 2: Configurar PHP
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'  # Versión de PHP, cámbiala según tu proyecto
+
+      # Paso 3: Instalar dependencias de Composer
+      - name: Install Composer dependencies
+        run: |
+          curl -sS https://getcomposer.org/installer | phpApi with .net(c#) and MySQL to manage event reservations
+          php composer.phar install --no-interaction --prefer-dist
+
+      # Paso 4: Configurar la base de datos (si es necesario)
+      - name: Set up MySQL
+        uses: docker://mysql:5.7
+        with:
+          entrypoint: "--default-authentication-plugin=mysql_native_password"
+        env:
+          MYSQL_ROOT_PASSWORD: root_password
+          MYSQL_DATABASE: laravel_db
+          MYSQL_USER: user
+          MYSQL_PASSWORD: password
+
+      # Paso 5: Ejecutar pruebas (si tienes pruebas de PHPUnit)
+      - name: Run PHPUnit tests
+        run: |
+          ./vendor/bin/phpunit
+
+      # Paso 6: Desplegar el proyecto (puedes modificarlo según tu servidor)
+      - name: Deploy to Server (ejemplo con SSH)
+        run: |
+          ssh -o StrictHostKeyChecking=no user@yourserver.com "cd /path/to/your/project && git pull && php artisan migrate --force"
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+
