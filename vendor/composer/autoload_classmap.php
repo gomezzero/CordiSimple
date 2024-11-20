@@ -8,20 +8,13 @@ $baseDir = dirname($vendorDir);
 return array(
     'App\\Console\\Commands\\SendEventReminders' => $baseDir . '/app/Console/Commands/SendEventReminders.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
-
     'App\\Http\\Controllers\\Auth\\AuthenticatedSessionController' => $baseDir . '/app/Http/Controllers/Auth/AuthenticatedSessionController.php',
     'App\\Http\\Controllers\\Auth\\RegisteredUserController' => $baseDir . '/app/Http/Controllers/Auth/RegisteredUserController.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Http\\Controllers\\EventController' => $baseDir . '/app/Http/Controllers/EventController.php',
-
-    'App\\Http\\Controllers\\NotificationController' => $baseDir . '/app/Http/Controllers/NotificationController.php',
     'App\\Http\\Controllers\\ReservationController' => $baseDir . '/app/Http/Controllers/ReservationController.php',
     'App\\Http\\Controllers\\UserController' => $baseDir . '/app/Http/Controllers/UserController.php',
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',
-
-    'App\\Http\\Controllers\\ReservationController' => $baseDir . '/app/Http/Controllers/ReservationController.php',
-    'App\\Http\\Controllers\\UserController' => $baseDir . '/app/Http/Controllers/UserController.php',
-
     'App\\Http\\Middleware\\CheckIfAdmin' => $baseDir . '/app/Http/Middleware/CheckIfAdmin.php',
     'App\\Http\\Requests\\Auth\\LoginRequest' => $baseDir . '/app/Http/Requests/Auth/LoginRequest.php',
     'App\\Http\\Requests\\EventRequest' => $baseDir . '/app/Http/Requests/EventRequest.php',
@@ -32,15 +25,10 @@ return array(
     'App\\Models\\Notification' => $baseDir . '/app/Models/Notification.php',
     'App\\Models\\Reservation' => $baseDir . '/app/Models/Reservation.php',
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',
-
-    'App\\Notifications\\ReservationCanceledNotification' => $baseDir . '/app/Notifications/ReservationCanceledNotification.php',
-    'App\\Notifications\\ReservationConfirmation' => $baseDir . '/app/Notifications/ReservationConfirmation.php',
-
     'App\\Notifications\\EventReminderNotification' => $baseDir . '/app/Notifications/EventReminderNotification.php',
     'App\\Notifications\\ReservationCanceledNotification' => $baseDir . '/app/Notifications/ReservationCanceledNotification.php',
     'App\\Notifications\\ReservationConfirmation' => $baseDir . '/app/Notifications/ReservationConfirmation.php',
     'App\\Notifications\\UserRegisteredNotification' => $baseDir . '/app/Notifications/UserRegisteredNotification.php',
-
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',
     'App\\View\\Components\\AppLayout' => $baseDir . '/app/View/Components/AppLayout.php',
     'App\\View\\Components\\GuestLayout' => $baseDir . '/app/View/Components/GuestLayout.php',
@@ -162,9 +150,11 @@ return array(
     'Cron\\MinutesField' => $vendorDir . '/dragonmantank/cron-expression/src/Cron/MinutesField.php',
     'Cron\\MonthField' => $vendorDir . '/dragonmantank/cron-expression/src/Cron/MonthField.php',
     'Database\\Factories\\EventFactory' => $baseDir . '/database/factories/EventFactory.php',
+    'Database\\Factories\\ReservationFactory' => $baseDir . '/database/factories/ReservationFactory.php',
     'Database\\Factories\\UserFactory' => $baseDir . '/database/factories/UserFactory.php',
     'Database\\Seeders\\DatabaseSeeder' => $baseDir . '/database/seeders/DatabaseSeeder.php',
     'Database\\Seeders\\EventSeeder' => $baseDir . '/database/seeders/EventSeeder.php',
+    'Database\\Seeders\\ReservationSeeder' => $baseDir . '/database/seeders/ReservationSeeder.php',
     'Database\\Seeders\\UserSeeder' => $baseDir . '/database/seeders/UserSeeder.php',
     'DateError' => $vendorDir . '/symfony/polyfill-php83/Resources/stubs/DateError.php',
     'DateException' => $vendorDir . '/symfony/polyfill-php83/Resources/stubs/DateException.php',
@@ -5963,7 +5953,6 @@ return array(
     'Termwind\\ValueObjects\\Node' => $vendorDir . '/nunomaduro/termwind/src/ValueObjects/Node.php',
     'Termwind\\ValueObjects\\Style' => $vendorDir . '/nunomaduro/termwind/src/ValueObjects/Style.php',
     'Termwind\\ValueObjects\\Styles' => $vendorDir . '/nunomaduro/termwind/src/ValueObjects/Styles.php',
-
     'Tests\\CreatesApplication' => $baseDir . '/tests/CreatesApplication.php',
     'Tests\\Event\\EventCreationTest' => $baseDir . '/tests/Event/EventCreationTest.php',
     'Tests\\Event\\EventDeletionTest' => $baseDir . '/tests/Event/EventDeletionTest.php',
@@ -5972,6 +5961,8 @@ return array(
     'Tests\\Event\\EventPermissionsTest' => $baseDir . '/tests/Event/EventPermissionsTest.php',
     'Tests\\Feature\\ExampleTest' => $baseDir . '/tests/Feature/ExampleTest.php',
     'Tests\\Notification\\RegisterUserNotificationTest' => $baseDir . '/tests/Notification/RegisterUserNotificationTest.php',
+    'Tests\\Notification\\ReservationCancellNotification' => $baseDir . '/tests/Notification/ReservationCancellNotification.php',
+    'Tests\\Notification\\ReservationNotificationTest' => $baseDir . '/tests/Notification/ReservationNotificationTest.php',
     'Tests\\TestCase' => $baseDir . '/tests/TestCase.php',
     'Tests\\Unit\\ExampleTest' => $baseDir . '/tests/Unit/ExampleTest.php',
     'TheSeer\\Tokenizer\\Exception' => $vendorDir . '/theseer/tokenizer/src/Exception.php',

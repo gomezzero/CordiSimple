@@ -3,10 +3,10 @@ name: Laravel CI/CD Pipeline
 on:
   push:
     branches:
-      - main  # Se activa cuando se realiza un push en la rama 'main' (o 'master')
+      - main
   pull_request:
     branches:
-      - main  # Se activa en los pull requests dirigidos a 'main'
+      - main
 
 jobs:
   build:
@@ -21,16 +21,16 @@ jobs:
       - name: Set up PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.1'  # Versión de PHP, cámbiala según tu proyecto
+          php-version: '8.1'  # Ajusta la versión de PHP según tu proyecto
 
       # Paso 3: Instalar dependencias de Composer
       - name: Install Composer dependencies
         run: |
-          curl -sS https://getcomposer.org/installer | phpApi with .net(c#) and MySQL to manage event reservations
+          curl -sS https://getcomposer.org/installer | php
           php composer.phar install --no-interaction --prefer-dist
 
-      # Paso 4: Configurar la base de datos (si es necesario)
-      - name: Set up MySQL
+      # Paso 4: Configurar la base de datos (MySQL en Docker)
+      - name: Set up MySQL (Docker)
         uses: docker://mysql:5.7
         with:
           entrypoint: "--default-authentication-plugin=mysql_native_password"
@@ -40,15 +40,22 @@ jobs:
           MYSQL_USER: user
           MYSQL_PASSWORD: password
 
-      # Paso 5: Ejecutar pruebas (si tienes pruebas de PHPUnit)
+      # Paso 5: Esperar a que MySQL esté listo
+      - name: Wait for MySQL to be ready
+        run: |
+          until mysqladmin ping -h "127.0.0.1" --silent; do
+            echo "Esperando a que MySQL esté listo..."
+            sleep 5
+          done
+
+      # Paso 6: Ejecutar pruebas con PHPUnit
       - name: Run PHPUnit tests
         run: |
           ./vendor/bin/phpunit
 
-      # Paso 6: Desplegar el proyecto (puedes modificarlo según tu servidor)
-      - name: Deploy to Server (ejemplo con SSH)
+      # Paso 7: Desplegar al servidor (usando SSH)
+      - name: Deploy to Server
         run: |
-          ssh -o StrictHostKeyChecking=no user@yourserver.com "cd /path/to/your/project && git pull && php artisan migrate --force"
+          ssh -o StrictHostKeyChecking=no user@yourserver.com "cd /path/to/your/project && git pull && php artisan migrate --force && php artisan config:cache && php artisan route:cache && php artisan optimize"
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-
