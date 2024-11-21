@@ -13,7 +13,7 @@
             <p><strong>Última Actualización:</strong> {{ $user->updated_at->format('d/m/Y') }}</p>
         </div>
 
-        <h2 class="text-xl font-semibold mt-8 mb-4">Reservas del Usuario</h2>
+        <h1 class="text-xl text-white font-semibold mt-8 mb-4">Reservas del Usuario</h1>
 
         @if($user->reservations->isEmpty())
             <p class="text-center text-gray-600">No hay reservas disponibles para este usuario.</p>
@@ -59,4 +59,3 @@
     </div>
 @endsection
 </x-app-layout>
-@include('layouts.partials.footer')

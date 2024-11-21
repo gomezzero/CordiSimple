@@ -3,7 +3,7 @@
     @section('title', 'Detalles del Evento')
 
     @section('content')
-        <div class="container mx-auto py-8 px-4 min-h-screen">
+        <div class="container mx-auto py-8 px-4 min-h-screen ">
             <div class="bg-white shadow-md rounded-lg p-6">
                 <h1 class="text-3xl font-bold text-center mb-6">{{ $event->name }}</h1>
 
@@ -59,4 +59,4 @@
         </div>
     @endsection
 </x-app-layout>
-@include('layouts.partials.footer')
+

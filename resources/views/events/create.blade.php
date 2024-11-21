@@ -1,7 +1,7 @@
 <x-app-layout>
 @section('title','Create a new event')
 @section('content')
-    <div class="container mx-auto py-8">     
+    <div class="container mx-auto py-8 px-4 min-h-screen">     
         <!-- Verifica si hay errores de validación -->
         @if ($errors->any())
             <div class="bg-red-100 text-red-700 border border-red-400 rounded-md p-4 mb-6">
@@ -123,5 +123,3 @@
     </div>
 @endsection
 </x-app-layout>
-
-@include('layouts.partials.footer')
