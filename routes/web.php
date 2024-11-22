@@ -13,7 +13,7 @@ Route::get('/dashboard', [EventController::class, 'indexDashboard'])
 Route::get('/', [EventController::class, 'indexWelcome'])
     ->name('welcome');
 
-
+//Events
 Route::middleware(['auth', CheckIfAdmin::class])->group(function () {
     Route::get('events', [EventController::class, 'index'])->name('events.index');
     Route::get('events/create', [EventController::class, 'create'])->name('events.create');
@@ -41,7 +41,7 @@ Route::get('/events/{eventId}/schedule', [ReservationController::class, 'storeFo
 Route::get('/reservations', [ReservationController::class, 'index'])->name('reservations.userindex');
 Route::post('/reservations/{id}', [ReservationController::class, 'destroy'])->name('reservations.destroy');
 Route::put('/reservations/{id}/cancel', [ReservationController::class, 'updateStatus'])->name('reservations.cancel');
-Route::put('/reservations/cancel/{id}', [ReservationController::class, 'cancel'])->name('reservations.cancel');
+// Route::put('/reservations/cancel/{id}', [ReservationController::class, 'cancel'])->name('reservations.cancel');
 
 // Rutas protegidas para el admin (solo autenticados y administradores)
 Route::middleware(['auth', CheckIfAdmin::class])->group(function () {
